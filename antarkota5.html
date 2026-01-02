@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antar Kota - Ringkasan</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #fdf8e9;
+        }
+        
+        .antar-kota-page {
+            background: linear-gradient(#FFCC00 350px, #fdf8e9 350px);
+            min-height: 100vh;
+        }
+        /* Header */
+        
+        .antar-kota-header {
+            display: flex;
+            align-items: center;
+            padding: 30px 60px;
+        }
+        
+        .back-button img {
+            width: 30px;
+        }
+        
+        .header-title {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .header-title img {
+            height: 50px;
+        }
+        
+        .header-spacer {
+            width: 30px;
+        }
+        /* Card Container */
+        
+        .booking-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .booking-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+        }
+        /* Station Group */
+        
+        .station-group {
+            border: 1.5px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 30px;
+        }
+        
+        .booking-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .icon img {
+            width: 50px;
+            margin-right: 25px;
+        }
+        
+        .label {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .value-large {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        /* Divider & Swap */
+        
+        .divider-container {
+            position: relative;
+            height: 1.5px;
+            background: #eee;
+        }
+        
+        .swap-icon {
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            background: #fff;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .swap-icon:active {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        /* Rows */
+        
+        .flex-row {
+            display: flex;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .flex-1 {
+            flex: 1;
+        }
+        
+        .standalone {
+            border: 1.5px solid #ddd;
+            border-radius: 20px;
+            padding: 20px 30px;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+        
+        .standalone:hover {
+            background-color: #fff9e6;
+        }
+        /* Controls */
+        
+        .passenger-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .passenger-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #333;
+            cursor: pointer;
+            border-radius: 4px;
+            background: none;
+            font-size: 18px;
+        }
+        
+        .passenger-count {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        /* Main Button */
+        
+        .btn-next {
+            display: block;
+            background: #8e44ad;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 20px;
+            margin-top: 40px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        
+        .btn-next:hover {
+            background: #732d91;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="antar-kota-page">
+        <header class="antar-kota-header">
+            <a href="antarkota4.html" class="back-button"><img src="images/iconpanah.png"></a>
+            <div class="header-title"><img src="images/tulisanantarkota.png"></div>
+            <div class="header-spacer"></div>
+        </header>
+
+        <div class="booking-container">
+            <div class="booking-card">
+                <div class="station-group">
+                    <div class="booking-item">
+                        <div class="icon"><img src="images/keretaberangkat.png"></div>
+                        <div class="text-content">
+                            <span class="label">Keberangkatan</span>
+                            <span id="res-departure" class="value-large">-</span>
+                        </div>
+                    </div>
+
+                    <div class="divider-container">
+                        <img src="images/bergantian.png" class="swap-icon" onclick="swapStations()">
+                    </div>
+
+                    <div class="booking-item">
+                        <div class="icon"><img src="images/keretatujuan.png"></div>
+                        <div class="text-content">
+                            <span class="label">Tujuan</span>
+                            <span id="res-destination" class="value-large">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-row">
+                    <a href="tanggal.html" class="booking-item standalone flex-1">
+                        <div class="icon"><img src="images/kalender.png"></div>
+                        <div class="text-content">
+                            <span class="label">Tanggal Berangkat</span>
+                            <span id="res-date" class="value-large">Kamis, 18 Des 2025</span>
+                        </div>
+                    </a>
+
+                    <div class="booking-item standalone flex-1">
+                        <div class="icon"><img src="images/penumpang.png"></div>
+                        <div class="text-content">
+                            <span class="label">Jumlah Penumpang</span>
+                            <div class="passenger-controls">
+                                <button class="passenger-btn" onclick="updateCount(-1)">-</button>
+                                <span class="passenger-count" id="count">1</span>
+                                <button class="passenger-btn" onclick="updateCount(1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="pesankereta.html" class="btn-next">CARI TIKET</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi memuat data otomatis saat halaman dibuka
+        function loadData() {
+            const departure = localStorage.getItem('selectedDeparture') || "Pilih Stasiun";
+            const destination = localStorage.getItem('selectedDestination') || "Pilih Tujuan";
+            const date = localStorage.getItem('selectedDate') || "Kamis, 18 Des 2025";
+            const passengers = localStorage.getItem('passengerCount') || "1";
+
+            document.getElementById('res-departure').innerText = departure;
+            document.getElementById('res-destination').innerText = destination;
+            document.getElementById('res-date').innerText = date;
+            document.getElementById('count').innerText = passengers;
+        }
+
+        // Fungsi Tukar Stasiun
+        function swapStations() {
+            const dep = document.getElementById('res-departure').innerText;
+            const dest = document.getElementById('res-destination').innerText;
+
+            if (dep !== "Pilih Stasiun" && dest !== "Pilih Tujuan") {
+                document.getElementById('res-departure').innerText = dest;
+                document.getElementById('res-destination').innerText = dep;
+
+                localStorage.setItem('selectedDeparture', dest);
+                localStorage.setItem('selectedDestination', dep);
+            }
+        }
+
+        // Fungsi Update Penumpang & Simpan ke Memori
+        function updateCount(val) {
+            const countEl = document.getElementById('count');
+            let current = parseInt(countEl.innerText);
+            if (current + val >= 1) {
+                let newVal = current + val;
+                countEl.innerText = newVal;
+                localStorage.setItem('passengerCount', newVal);
+            }
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+
+</html>

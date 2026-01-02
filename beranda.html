@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Kereta API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --yellow: #FFCC00;
+            --red: #E70011;
+            --purple: #9747FF;
+            --gray: #636363;
+            --dark: #333;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #FFCC00;
+            overflow-x: hidden;
+        }
+        
+        .beranda-page {
+            max-width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            padding-bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        /* Header */
+        
+        .beranda-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .user-info:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .profile-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), #7B2FE8);
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .icon-btn {
+            background: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .icon-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .language-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .flag-indonesia {
+            width: 24px;
+            height: 16px;
+            border-radius: 4px;
+            background: linear-gradient(to bottom, #FF0000 50%, #FFFFFF 50%);
+        }
+        /* KAI Pay Card */
+        
+        .kai-pay-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kai-pay-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .kai-pay-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        
+        .kai-pay-saldo {
+            font-size: 24px;
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        .kai-pay-divider {
+            width: 2px;
+            height: 60px;
+            background: #E0E0E0;
+            margin: 0 30px;
+        }
+        
+        .kai-pay-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .menu-item:hover {
+            background: #F5F5F5;
+        }
+        
+        .menu-item svg {
+            width: 24px;
+            height: 24px;
+            color: var(--dark);
+        }
+        
+        .menu-item span {
+            font-size: 14px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+        /* Rail Point Card */
+        
+        .rail-point-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .rail-point-title {
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .rail-point-value {
+            font-size: 24px;
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        .rail-point-arrow {
+            font-size: 24px;
+            color: #999;
+        }
+        /* Quick Actions */
+        
+        .quick-actions {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+        
+        .action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            flex: 1;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .action-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .action-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .action-item span {
+            font-size: 16px;
+            color: var(--dark);
+            font-weight: 600;
+            text-align: center;
+            margin-top: 6px;
+        }
+        /* Trip Planner */
+        
+        .trip-planner {
+            background: linear-gradient(135deg, #8D6E63, #6D4C41);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .trip-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .trip-title {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .trip-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .btn-buat {
+            background: var(--red);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+        /* Promo Section */
+        
+        .promo-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .promo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .promo-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .promo-link {
+            font-size: 16px;
+            color: var(--red);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .promo-card {
+            background: linear-gradient(135deg, var(--red), #C62828);
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .promo-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .promo-text-small {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .promo-discount {
+            font-size: 42px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .promo-desc {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        /* Bottom Navigation */
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 240, 225, 0.95));
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0;
+            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            min-width: 68px;
+        }
+        
+        .nav-item:hover {
+            background: #F5F5F5;
+        }
+        
+        .nav-item img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+        
+        .nav-item.active img {
+            transform: scale(1.08);
+            filter: brightness(0) saturate(100%) invert(18%) sepia(98%) saturate(6541%) hue-rotate(356deg) brightness(91%) contrast(114%);
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .kai-pay-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .kai-pay-divider {
+                width: 100%;
+                height: 2px;
+                margin: 0;
+            }
+            .quick-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="beranda-page">
+        <!-- Header -->
+        <header class="beranda-header">
+            <div class="user-info" onclick="showProfile()">
+                <div class="profile-avatar"></div>
+                <span class="user-name">Nabila Qonita</span>
+            </div>
+        </header>
+
+        <!-- KAI Pay Card -->
+        <section class="kai-pay-card">
+            <div class="kai-pay-content">
+                <div class="kai-pay-left">
+                    <div class="kai-pay-title">KAI Pay</div>
+                    <div class="kai-pay-saldo">Rp 5.000</div>
+                </div>
+                <div class="kai-pay-divider"></div>
+                <div class="kai-pay-menu">
+                    <a href="topup.html" class="menu-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 8v8m-4-4h8" stroke="currentColor" stroke-width="2"/>
+        </svg>
+                        <span>Top Up</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Rail Point Card -->
+        <section class="rail-point-card" onclick="openRailPoint()">
+            <div class="rail-point-content">
+                <div class="rail-point-title">Rail Point</div>
+                <div class="rail-point-value">0 Poin</div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <a href="antarkota1.html" class="action-item">
+                <div class="action-icon">
+                    <img src="images/antarkota1.png" alt="Antar Kota">
+                </div>
+                <span>Antar Kota</span>
+            </a>
+
+            <a href="lokasi.html" class="action-item">
+                <div class="action-icon">
+                    <img src="images/lokasi1.png" alt="Lokasi">
+                </div>
+                <span>Lokasi</span>
+            </a>
+
+            <a href="bandara.html" class="action-item">
+                <div class="action-icon">
+                    <img src="images/bandara1.png" alt="Bandara">
+                </div>
+                <span>Bandara</span>
+            </a>
+        </section>
+
+        <!-- TRIP Planner -->
+        <section class="trip-planner" onclick="location.href='tripplanner.html'">
+            <div class="trip-content">
+                <div class="trip-title">TRIP Planner</div>
+                <div class="trip-subtitle">Rencanakan Perjalananmu</div>
+                <button class="btn-buat">BUAT</button>
+            </div>
+        </section>
+
+
+        <!-- Promo Section -->
+        <section class="promo-section">
+            <div class="promo-header">
+                <span class="promo-title">Promo Terbaru</span>
+                <a href="promo.html" class="promo-link" onclick="viewAllPromos(event)">Lihat Semua</a>
+            </div>
+            <div class="promo-card" onclick="openPromoDetail()">
+                <div class="promo-content">
+                    <div class="promo-text-small">Dapatkan diskon hingga</div>
+                    <div class="promo-discount">50%</div>
+                    <div class="promo-desc">Untuk perjalanan Antar Kota</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="beranda.html" class="nav-item active">
+                <img src="images/beranda.png" alt="Beranda">
+            </a>
+            <a href="tiketsaya.html" class="nav-item">
+                <img src="images/tiketsaya.png" alt="Tiket Saya">
+            </a>
+            <a href="promo.html" class="nav-item">
+                <img src="images/promo.png" alt="Promo">
+            </a>
+            <a href="akun.html" class="nav-item">
+                <img src="images/akun.png" alt="Akun">
+            </a>
+        </nav>
+    </div>
+</body>
+
+</html>

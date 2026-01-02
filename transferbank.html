@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Bank</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #FFCC00 0%, #FFD700 50%, #FFEB99 100%);
+        }
+        /* Container */
+        
+        .transfer-page {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        /* Header */
+        
+        .page-title {
+            text-align: center;
+            font-family: "Times New Roman", serif;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        /* Card */
+        
+        .receipt-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 3px solid #000;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+        /* Bank Info */
+        
+        .bank-details {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .bank-name {
+            font-family: "Times New Roman", serif;
+            font-size: 26px;
+        }
+        
+        .transaction-time {
+            font-size: 20px;
+        }
+        
+        .merchant-name {
+            font-family: "Times New Roman", serif;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .transaction-amount {
+            font-family: "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        /* Status */
+        
+        .status-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .status-label {
+            font-family: "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .success-icon {
+            animation: scaleIn .5s ease;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0
+            }
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+        /* Detail */
+        
+        .transaction-details {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .detail-label {
+            font-size: 18px;
+        }
+        
+        .detail-value {
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
+        }
+        /* Button */
+        
+        .btn-ok {
+            width: 100%;
+            max-width: 520px;
+            margin: auto;
+            padding: 25px;
+            background: #E70011;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-family: "Times New Roman", serif;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(231, 0, 17, .3);
+            transition: .3s;
+        }
+        
+        .btn-ok:hover {
+            background: #C62828;
+            transform: translateY(-3px);
+        }
+        /* Responsive */
+        
+        @media(max-width:768px) {
+            .page-title {
+                font-size: 28px
+            }
+            .transaction-amount {
+                font-size: 28px
+            }
+            .status-label {
+                font-size: 28px
+            }
+            .btn-ok {
+                font-size: 28px;
+                padding: 20px
+            }
+        }
+        
+        @media(max-width:480px) {
+            .receipt-card {
+                padding: 25px 20px
+            }
+            .transaction-amount {
+                font-size: 24px
+            }
+            .status-label {
+                font-size: 24px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="transfer-page">
+        <h1 class="page-title">Transfer Bank</h1>
+
+        <div class="receipt-card">
+            <div class="bank-details">
+                <div class="bank-name">Pembayaran Bank Mandiri</div>
+                <div class="transaction-time">8/12 18:05:29</div>
+                <div class="merchant-name">KAI-booking</div>
+                <div class="transaction-amount">Rp 66.000</div>
+            </div>
+
+            <div class="status-section">
+                <div class="status-label">Berhasil</div>
+                <div class="success-icon">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="60" fill="#00C853"/>
+                    <path d="M35 60L52 77L85 44" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+                </svg>
+                </div>
+            </div>
+
+            <div class="transaction-details">
+                <div>
+                    <div class="detail-label">Dari: No.Transaksi</div>
+                    <div class="detail-value">190500000044</div>
+                </div>
+                <div>
+                    <div class="detail-label">RRN</div>
+                    <div class="detail-value">5500044</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-ok" onclick="location.href='beranda.html'">OK</button>
+    </div>
+
+</body>
+
+</html>

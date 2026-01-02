@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiket Saya - KAI Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        .main-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #FFCC00, #F6C400);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+        /* Header */
+        
+        .tiket-header {
+            margin: 40px 0 0 100px;
+        }
+        
+        .tiket-saya-1 {
+            display: block;
+            color: black;
+            font-family: 'Times New Roman', serif;
+            font-size: 48px;
+            font-weight: 400;
+        }
+        
+        .semua-tiket-aktif {
+            display: block;
+            margin-top: 5px;
+            color: black;
+            font-size: 32px;
+        }
+        /* Kotak Putih */
+        
+        .rectangle {
+            position: relative;
+            width: 100%;
+            min-height: 700px;
+            margin: 30px 0 0 0;
+            background: white;
+            border-radius: 30px;
+            padding: 40px 100px;
+        }
+        
+        .layanan-tambahan {
+            display: block;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        /* Ilustrasi Buku */
+        
+        .book-illustration {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 5;
+        }
+        
+        .book-illustration img {
+            display: block;
+        }
+        
+        .book-yellow {
+            width: 100px;
+            height: auto;
+            margin-bottom: -30px;
+            transform: rotate(15deg);
+        }
+        
+        .book-purple {
+            width: 120px;
+            height: auto;
+        }
+        /* Icon Layanan */
+        
+        .flex-row-f {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 50px;
+            gap: 30px;
+        }
+        
+        .layanan-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            gap: 15px;
+        }
+        
+        .layanan-item:hover {
+            transform: scale(1.1);
+        }
+        
+        .layanan-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .layanan-item span {
+            font-size: 20px;
+            color: #333;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .tiket-layanan-saya {
+            display: block;
+            margin-top: 60px;
+            font-size: 32px;
+        }
+        /* Filter */
+        
+        .flex-row-a {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .filter-box {
+            padding: 15px 30px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* Tombol Cek Tiket */
+        
+        .rectangle-10 {
+            width: 450px;
+            height: 80px;
+            background: #FFCC00;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            cursor: pointer;
+            font-size: 28px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .rectangle-10:hover {
+            background: #E6B800;
+        }
+        /* Bottom Navigation */
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 240, 225, 0.95));
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0;
+            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            min-width: 68px;
+            text-decoration: none;
+        }
+        
+        .nav-item:hover {
+            background: #F5F5F5;
+        }
+        
+        .nav-item img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+        
+        .active-tiket img {
+            transform: scale(1.08);
+            filter: brightness(0) saturate(100%) invert(18%) sepia(98%) saturate(6541%) hue-rotate(356deg) brightness(91%) contrast(114%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="tiket-header">
+            <span class="tiket-saya-1">Tiket Saya</span>
+            <span class="semua-tiket-aktif">Semua tiket aktif dan menunggu pembayaran</span>
+        </header>
+
+        <div class="rectangle">
+            <span class="layanan-tambahan">Layanan Tambahan untuk perjalananmu</span>
+
+            <!-- Ilustrasi Buku -->
+            <div class="book-illustration">
+                <img src="images/bukukuning.png" alt="Buku Kuning" class="book-yellow">
+                <img src="images/bukuungu.png" alt="Buku Ungu" class="book-purple">
+            </div>
+
+            <div class="flex-row-f">
+                <div class="layanan-item" onclick="location.href='railfood.html'">
+                    <img src="images/railfoodya.png" alt="Rail Food">
+                    <span>Rail Food</span>
+                </div>
+                <div class="layanan-item" onclick="location.href='taksi.html'">
+                    <img src="images/taksiya.png" alt="Taksi">
+                    <span>Taksi</span>
+                </div>
+                <div class="layanan-item" onclick="location.href='bus.html'">
+                    <img src="images/busya.png" alt="Bus">
+                    <span>Bus</span>
+                </div>
+                <div class="layanan-item" onclick="location.href='pesanhotel.html'">
+                    <img src="images/hotelya.png" alt="Hotel">
+                    <span>Hotel</span>
+                </div>
+            </div>
+
+            <span class="tiket-layanan-saya">Tiket & Layanan Saya</span>
+
+            <div class="flex-row-a">
+                <a href="riwayatpembelian.html" class="filter-box" style="background: #eee;">Semua</a>
+                <a href="riwayatpembelian.html" class="filter-box">Antar Kota</a>
+                <a href="riwayatpembelian_bandara.html" class="filter-box">Bandara</a>
+                <a href="riwayatpembelian_lokal.html" class="filter-box">Lokal</a>
+            </div>
+
+            <div class="rectangle-10" onclick="location.href='layanancektiket.html'">
+                <span class="cek-tambah-tiket">CEK & TAMBAH TIKET</span>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="beranda.html" class="nav-item">
+                <img src="images/beranda.png" alt="Beranda">
+            </a>
+            <a href="tiketsaya.html" class="nav-item active-tiket">
+                <img src="images/tiketsaya.png" alt="Tiket">
+            </a>
+            <a href="promo.html" class="nav-item">
+                <img src="images/promo.png" alt="Promo">
+            </a>
+            <a href="akun.html" class="nav-item">
+                <img src="images/akun.png" alt="Akun">
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        document.querySelectorAll('img[src*="iconpanahkiri"]').forEach(btn => {
+            btn.onclick = () => window.history.back();
+        });
+    </script>
+</body>
+
+</html>

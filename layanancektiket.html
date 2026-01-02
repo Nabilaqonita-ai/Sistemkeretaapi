@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layanan Cek Tiket - Kereta API</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: "Times New Roman", serif;
+            background: #ffffff;
+        }
+        
+        .main-container {
+            max-width: 1440px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 80px;
+        }
+        /* BACKGROUND */
+        
+        .ellipse,
+        .ellipse-a {
+            position: absolute;
+            width: 1600px;
+            height: 900px;
+            left: -100px;
+            z-index: 1;
+            background-size: cover;
+            filter: blur(2px);
+        }
+        
+        .ellipse {
+            top: -400px;
+            background: url('images/background-blur-1.png') no-repeat center;
+        }
+        
+        .ellipse-a {
+            bottom: -400px;
+            background: url('images/background-blur-2.png') no-repeat center;
+        }
+        /* HEADER */
+        
+        .header {
+            position: relative;
+            z-index: 5;
+            padding: 30px 80px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .header h1 {
+            font-size: 56px;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            width: 60px;
+            height: 60px;
+            background: url('images/iconpanah.png') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+        }
+        /* CARD UTAMA */
+        
+        .card {
+            position: relative;
+            z-index: 5;
+            background: #ffffff;
+            margin: 40px auto;
+            width: 92%;
+            border-radius: 40px;
+            padding: 60px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .ticket-box {
+            background: #fff7e4;
+            border: 3px solid #000;
+            border-radius: 20px;
+            padding: 40px;
+        }
+        /* PROFIL */
+        
+        .profile {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 420px;
+            background: url('images/profile-icon.png') no-repeat center;
+            background-size: cover;
+            border-radius: 10px;
+        }
+        
+        .label,
+        .value {
+            font-size: 30px;
+            line-height: 1.6;
+        }
+        
+        .value {
+            font-size: 34px;
+            text-align: right;
+        }
+        
+        .divider {
+            height: 4px;
+            background: #000;
+            margin: 30px 0;
+        }
+        /* INFO KERETA */
+        
+        .row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        /* BUTTON */
+        
+        .btn-primary {
+            background: #9747ff;
+            color: white;
+            font-size: 38px;
+            font-weight: bold;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+            cursor: pointer;
+        }
+        
+        .btn-secondary {
+            background: #e70011;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+
+        <div class="ellipse"></div>
+        <div class="ellipse-a"></div>
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="back-btn" onclick="history.back()"></div>
+            <h1>Layanan Cek Tiket</h1>
+        </div>
+
+        <!-- CARD -->
+        <div class="card">
+            <div class="ticket-box">
+
+                <div class="profile">
+                    <div class="profile-img"></div>
+
+                    <div class="label">
+                        Nama Lengkap<br> No. Telepon<br> Email
+                        <br> KTP
+                        <br> Tanggal Lahir<br> Jenis Kelamin
+                    </div>
+
+                    <div class="value">
+                        NABILA QONITA<br> ********4224
+                        <br> na************6@gmail.com
+                        <br> *************003
+                        <br> 04 April 2006<br> Perempuan
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="row">
+                    <span>MATARMAJA (KRT02)</span>
+                    <span>4A</span>
+                </div>
+
+                <div class="row">
+                    <span>Dewasa</span>
+                    <span>x1</span>
+                </div>
+
+                <div class="btn-primary">
+                    TUNJUKKAN TIKET INI KEPADA PENGAWAS
+                </div>
+            </div>
+
+            <a href="antarkota1.html" class="link-btn">
+                <div class="btn-secondary">TAMBAH TIKET KERETA</div>
+            </a>
+
+            <a href="bandara.html" class="link-btn">
+                <div class="btn-secondary">TAMBAH TIKET BANDARA</div>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

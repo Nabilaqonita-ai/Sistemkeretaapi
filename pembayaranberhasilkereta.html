@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transfer Bank</title>
+    <style>
+        /* Base Styles */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(180deg, #FFCC00 0%, #FFD700 50%, #FFEB99 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .transfer-page {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        /* Typography & Header */
+        
+        .serif {
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .header {
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        /* Receipt Card */
+        
+        .receipt-card {
+            background: #FFFFFF;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid #000;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            text-align: center;
+        }
+        
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .bank-name {
+            font-size: 26px;
+        }
+        
+        .transaction-time {
+            font-size: 20px;
+        }
+        
+        .merchant-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .transaction-amount {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        /* Status Section */
+        
+        .status-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .status-label {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .success-icon {
+            display: flex;
+            animation: scaleIn 0.5s ease forwards;
+        }
+        
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        /* Transaction Details */
+        
+        .transaction-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .detail-row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .detail-label {
+            font-size: 18px;
+        }
+        
+        .detail-value {
+            font-size: 20px;
+            font-weight: 500;
+        }
+        /* OK Button */
+        
+        .btn-ok {
+            width: 100%;
+            padding: 25px;
+            background: #E70011;
+            color: #FFFFFF;
+            font-size: 36px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(231, 0, 17, 0.3);
+        }
+        
+        .btn-ok:hover {
+            background: #C62828;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 0, 17, 0.4);
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 28px;
+            }
+            .receipt-card {
+                padding: 35px 25px;
+            }
+            .bank-name {
+                font-size: 22px;
+            }
+            .merchant-name {
+                font-size: 24px;
+            }
+            .transaction-amount,
+            .status-label,
+            .btn-ok {
+                font-size: 28px;
+            }
+            .success-icon svg {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .bank-name {
+                font-size: 20px;
+            }
+            .merchant-name {
+                font-size: 22px;
+            }
+            .transaction-amount,
+            .status-label {
+                font-size: 24px;
+            }
+            .success-icon svg {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="transfer-page">
+        <header class="header">
+            <h1 class="page-title serif">Transfer Bank</h1>
+        </header>
+
+        <div class="receipt-card">
+            <div class="bank-details">
+                <div class="bank-name serif">Pembayaran Bank Mandiri</div>
+                <div class="transaction-time">8/12 18:05:29</div>
+                <div class="merchant-name serif">KAI-booking</div>
+                <div class="transaction-amount serif">Rp 66.000</div>
+            </div>
+
+            <div class="status-section">
+                <div class="status-label serif">Berhasil</div>
+                <div class="success-icon">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="60" fill="#00C853"/>
+                        <path d="M35 60L52 77L85 44" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="transaction-details">
+                <div class="detail-row">
+                    <span class="detail-label">Dari: No.Transaksi</span>
+                    <span class="detail-value serif">190500000044</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">RRN</span>
+                    <span class="detail-value serif">5500044</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-ok serif" onclick="window.location.href='beranda.html'">
+            OK
+        </button>
+    </div>
+</body>
+
+</html>

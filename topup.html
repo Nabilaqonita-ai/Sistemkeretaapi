@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Top Up Saldo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: #f2f2f2;
+        }
+        /* tombol panah */
+        
+        .btn-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            z-index: 1000;
+        }
+        
+        .btn-back img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        /* FULL WIDTH */
+        
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+            padding: 40px 80px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        /* BOX DIPERBESAR (DESKTOP) */
+        
+        .box {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        
+        select,
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: #ffcc00;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .info {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px dashed #999;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .loading {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .success {
+            margin-top: 30px;
+            text-align: center;
+            color: green;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PANAH KEMBALI -->
+    <a href="beranda.html" class="btn-back">
+        <img src="images/iconpanah.png" alt="Kembali">
+    </a>
+
+    <div class="container">
+        <h1>Top Up Saldo</h1>
+
+        <div class="box">
+
+            <label>Metode Pembayaran</label>
+            <select id="metode" onchange="ubahMetode()">
+                <option value="">-- Pilih Metode --</option>
+                <option value="bank">Mobile Banking</option>
+                <option value="retail">Indomaret / Alfamart</option>
+            </select>
+
+            <div id="bankBox" style="display:none;">
+                <label>Pilih Bank</label>
+                <select id="bank" onchange="tampilkanKode()">
+                    <option value="">-- Pilih Bank --</option>
+                    <option value="mandiri">Mandiri</option>
+                    <option value="bca">BCA</option>
+                </select>
+            </div>
+
+            <div id="retailBox" style="display:none;">
+                <label>Gerai</label>
+                <select onchange="tampilkanKode()">
+                    <option>Indomaret</option>
+                    <option>Alfamart</option>
+                </select>
+            </div>
+
+            <div id="kode" class="info" style="display:none;"></div>
+
+            <button onclick="bayar()">Bayar / Top Up</button>
+
+            <div id="loading" class="loading"></div>
+            <div id="success" class="success"></div>
+
+        </div>
+    </div>
+
+    <script>
+        function ubahMetode() {
+            document.getElementById("bankBox").style.display = "none";
+            document.getElementById("retailBox").style.display = "none";
+            document.getElementById("kode").style.display = "none";
+            document.getElementById("loading").innerHTML = "";
+            document.getElementById("success").innerHTML = "";
+
+            const metode = document.getElementById("metode").value;
+            if (metode === "bank") {
+                document.getElementById("bankBox").style.display = "block";
+            } else if (metode === "retail") {
+                document.getElementById("retailBox").style.display = "block";
+                tampilkanKode();
+            }
+        }
+
+        function tampilkanKode() {
+            const metode = document.getElementById("metode").value;
+            const kodeBox = document.getElementById("kode");
+            kodeBox.style.display = "block";
+
+            if (metode === "bank") {
+                const bank = document.getElementById("bank").value;
+                if (bank === "mandiri") {
+                    kodeBox.innerHTML = "Virtual Account Mandiri:<br>70012 1234 5678";
+                } else if (bank === "bca") {
+                    kodeBox.innerHTML = "Virtual Account BCA:<br>39010 9876 5432";
+                } else {
+                    kodeBox.style.display = "none";
+                }
+            } else {
+                kodeBox.innerHTML = "Kode Pembayaran:<br>ALFA-INDO-829374";
+            }
+        }
+
+        function bayar() {
+            document.getElementById("success").innerHTML = "";
+            document.getElementById("loading").innerHTML =
+                "Memproses pembayaran...<br>Mohon tunggu 1 menit";
+
+            // LOADING 1 MENIT (60000 ms)
+            setTimeout(() => {
+                document.getElementById("loading").innerHTML = "";
+                document.getElementById("success").innerHTML =
+                    "Pembayaran Berhasil";
+            }, 60000);
+        }
+    </script>
+
+</body>
+
+</html>

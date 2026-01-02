@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pesan Hotel - Kereta API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        .main-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #fdfbd4;
+            overflow: hidden;
+        }
+        
+        .ellipse {
+            position: absolute;
+            width: 1533px;
+            height: 906px;
+            top: -301px;
+            left: -47px;
+            background: linear-gradient(135deg, #fdfbd4, #ffcc00);
+            filter: blur(2px);
+            z-index: 0;
+        }
+        
+        .header {
+            position: relative;
+            padding: 85px 0 0 154px;
+            display: flex;
+            align-items: center;
+            z-index: 3;
+        }
+        
+        .back-btn {
+            width: 61px;
+            height: 61px;
+            background: url('images/iconpanah.png') no-repeat center;
+            background-size: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .title {
+            font-family: 'Times New Roman', serif;
+            font-size: 57px;
+            font-weight: 700;
+            margin-left: 360px;
+        }
+        
+        .content-box {
+            position: relative;
+            width: 90%;
+            max-width: 1400px;
+            min-height: 1031px;
+            margin: 29px auto 0;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 40px 50px 50px;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-family: 'Times New Roman', serif;
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-family: 'Times New Roman', serif;
+            font-size: 36px;
+            margin-bottom: 60px;
+        }
+        
+        .input-box {
+            width: 90%;
+            max-width: 1100px;
+            height: 120px;
+            background: #c6c6c6;
+            border-radius: 15px;
+            margin: 0 auto 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 45px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .input-box:hover {
+            background: #b0b0b0;
+            transform: translateY(-2px);
+        }
+        
+        .input-box img {
+            width: 40px;
+            height: 40px;
+            margin-right: 50px;
+        }
+        
+        .input-box span {
+            font-family: 'Times New Roman', serif;
+            font-size: 30px;
+        }
+        
+        .row {
+            display: flex;
+            gap: 62px;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 10px;
+        }
+        
+        .input-white {
+            background: #c6c6c6;
+            border-radius: 15px;
+            padding: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .input-white:hover {
+            background: #b0b0b0;
+            transform: translateY(-2px);
+        }
+        
+        .calendar-box {
+            width: 561px;
+            height: 120px;
+        }
+        
+        .calendar-inner {
+            background: white;
+            border-radius: 15px;
+            width: 551px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            padding: 0 67px;
+            position: relative;
+        }
+        
+        .calendar-inner img:first-child {
+            width: 43px;
+            height: 43px;
+            margin-right: 30px;
+        }
+        
+        .calendar-inner span {
+            font-family: 'Times New Roman', serif;
+            font-size: 30px;
+        }
+        
+        .calendar-inner img:last-child {
+            width: 44px;
+            height: 22px;
+            position: absolute;
+            right: 43px;
+        }
+        
+        .night-box {
+            width: 402px;
+            height: 120px;
+        }
+        
+        .night-inner {
+            background: white;
+            border-radius: 15px;
+            width: 392px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            padding: 0 56px;
+            position: relative;
+        }
+        
+        .night-inner span {
+            font-family: 'Times New Roman', serif;
+            font-size: 30px;
+        }
+        
+        .night-inner img {
+            width: 44px;
+            height: 22px;
+            position: absolute;
+            right: 30px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 20px;
+            padding: 0 22px;
+        }
+        
+        .info-row span {
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+        }
+        
+        .search-btn {
+            width: 90%;
+            max-width: 1100px;
+            height: 120px;
+            background: #e70011;
+            border-radius: 15px;
+            margin: 40px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #cc000f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(231, 0, 17, 0.3);
+        }
+        
+        .search-btn span {
+            font-family: 'Times New Roman', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: #ffcc00;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-family: 'Times New Roman', serif;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .close-btn {
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            color: #e70011;
+        }
+        
+        .modal-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .hotel-item {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .hotel-item:hover {
+            border-color: #ffcc00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hotel-name {
+            font-family: 'Times New Roman', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .hotel-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .hotel-rating {
+            font-size: 24px;
+            color: #ff9800;
+        }
+        
+        .hotel-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e70011;
+        }
+        
+        .hotel-location {
+            font-size: 20px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .calendar-modal {
+            padding: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #ffcc00;
+            border-color: #ffcc00;
+        }
+        
+        .current-month {
+            font-family: 'Times New Roman', serif;
+            font-size: 28px;
+            font-weight: 700;
+            min-width: 250px;
+            text-align: center;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .day-header {
+            text-align: center;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .day-cell {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .day-cell:hover {
+            background: #ffcc00;
+            border-color: #ffcc00;
+        }
+        
+        .day-cell.empty {
+            border: none;
+            cursor: default;
+        }
+        
+        .day-cell.empty:hover {
+            background: transparent;
+        }
+        
+        .day-cell.selected {
+            background: #e70011;
+            color: white;
+            border-color: #e70011;
+            font-weight: 700;
+        }
+        
+        .selected-dates {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        
+        .confirm-btn {
+            width: 100%;
+            height: 60px;
+            background: #e70011;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .confirm-btn:hover {
+            background: #cc000f;
+        }
+        
+        .filter-section {
+            margin-bottom: 30px;
+        }
+        
+        .filter-title {
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-option {
+            padding: 10px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+        
+        .filter-option:hover {
+            border-color: #ffcc00;
+            background: #fff9e6;
+        }
+        
+        .filter-option.active {
+            border-color: #e70011;
+            background: #e70011;
+            color: white;
+        }
+        
+        .price-inputs {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .price-input {
+            flex: 1;
+        }
+        
+        .price-input input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        
+        .price-input label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="ellipse"></div>
+
+        <div class="header">
+            <div class="back-btn" onclick="location.href='tiketsaya.html'"></div>
+            <span class="title">Pesan Hotel</span>
+        </div>
+
+        <div class="content-box">
+            <div class="subtitle">Pesan Hotel</div>
+            <div class="description">Pesan hotel sekarang untuk kenyamanan pelayanan Anda</div>
+
+            <div class="input-box" onclick="openLocation()">
+                <img src="images/lokasihotel.png" alt="Lokasi">
+                <span id="locationText">Pilih Lokasi</span>
+            </div>
+
+            <div class="row">
+                <div class="input-white calendar-box" onclick="openCalendar()">
+                    <div class="calendar-inner">
+                        <img src="images/kalender.png" alt="Kalender">
+                        <span id="calendarText">Kalender</span>
+                        <img src="images/arahbawah.png" alt="Arrow">
+                    </div>
+                </div>
+
+                <div class="input-white night-box">
+                    <div class="night-inner">
+                        <span id="nightText">Jumlah Malam</span>
+                        <img src="images/arahbawah.png" alt="Arrow">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-row">
+                <span>Check-out :</span>
+                <span>Maks. 15 malam</span>
+            </div>
+
+            <div class="input-box" onclick="document.getElementById('guestModal').classList.add('active')">
+                <span id="guestText" style="margin-left: 19px;">Jumlah Penginap</span>
+            </div>
+
+            <div class="input-box" onclick="document.getElementById('filterModal').classList.add('active')">
+                <img src="images/filter.png" alt="Filter">
+                <span id="filterText">Filter</span>
+            </div>
+
+            <div class="search-btn" onclick="searchHotel()">
+                <span>CARI HOTEL</span>
+            </div>
+        </div>
+
+        <!-- Modal Pilih Lokasi -->
+        <div class="modal" id="locationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Pilih Kota Tujuan</h2>
+                    <span class="close-btn" onclick="document.getElementById('locationModal').classList.remove('active')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="hotel-item" onclick="selectLocation('Bandung')">
+                        <div class="hotel-name">Bandung</div>
+                        <div class="hotel-location">Jawa Barat</div>
+                    </div>
+
+                    <div class="hotel-item" onclick="selectLocation('Jakarta')">
+                        <div class="hotel-name">Jakarta</div>
+                        <div class="hotel-location">DKI Jakarta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Filter -->
+        <div class="modal" id="filterModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Filter Pencarian Hotel</h2>
+                    <span class="close-btn" onclick="document.getElementById('filterModal').classList.remove('active')">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <!-- Bintang Hotel -->
+                    <div class="filter-section">
+                        <div class="filter-title">Bintang Hotel</div>
+                        <div class="filter-options">
+                            <div class="filter-option" onclick="toggleFilter(this, 'star', '5')">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+
+                    <!-- Range Harga -->
+                    <div class="filter-section">
+                        <div class="filter-title">Range Harga per Malam</div>
+                        <div class="price-inputs">
+                            <div class="price-input">
+                                <label>Harga Minimum</label>
+                                <input type="number" id="minPrice" placeholder="Rp 500.000" value="500000">
+                            </div>
+                            <div class="price-input">
+                                <label>Harga Maximum</label>
+                                <input type="number" id="maxPrice" placeholder="Rp 3.000.000" value="3000000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fasilitas -->
+                    <div class="filter-section">
+                        <div class="filter-title">Fasilitas</div>
+                        <div class="filter-options">
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'wifi')">WiFi Gratis</div>
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'pool')">Kolam Renang</div>
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'parking')">Parkir Gratis</div>
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'breakfast')">Sarapan</div>
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'gym')">Gym/Fitness</div>
+                            <div class="filter-option" data-filter="facility" onclick="toggleFilter(this, 'facility', 'restaurant')">Restoran</div>
+                        </div>
+                    </div>
+
+                    <!-- Jarak dari Stasiun -->
+                    <div class="filter-section">
+                        <div class="filter-title">Jarak dari Stasiun</div>
+                        <div class="filter-options">
+                            <div class="filter-option" onclick="toggleFilter(this, 'distance', '1')">
+                                < 1 km</div>
+                                    <div class="filter-option" onclick="toggleFilter(this, 'distance', '3')">
+                                        < 3 km</div>
+                                            <div class="filter-option" onclick="toggleFilter(this, 'distance', '5')">
+                                                < 5 km</div>
+                                                    <div class="filter-option" onclick="toggleFilter(this, 'distance', '10')">
+                                                        < 10 km</div>
+                                                    </div>
+                                            </div>
+
+                                            <button class="confirm-btn" onclick="applyFilter()">TERAPKAN FILTER</button>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Jumlah Penginap -->
+                        <div class="modal" id="guestModal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Pilih Jumlah Penginap</h2>
+                                    <span class="close-btn" onclick="document.getElementById('guestModal').classList.remove('active')">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="hotel-item" onclick="selectGuest('1 Dewasa, 0 Anak')">
+                                        <div class="hotel-name">1 Dewasa, 0 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('1 Dewasa, 1 Anak')">
+                                        <div class="hotel-name">1 Dewasa, 1 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('2 Dewasa, 0 Anak')">
+                                        <div class="hotel-name">2 Dewasa, 0 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('2 Dewasa, 1 Anak')">
+                                        <div class="hotel-name">2 Dewasa, 1 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('2 Dewasa, 2 Anak')">
+                                        <div class="hotel-name">2 Dewasa, 2 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('3 Dewasa, 0 Anak')">
+                                        <div class="hotel-name">3 Dewasa, 0 Anak</div>
+                                    </div>
+
+                                    <div class="hotel-item" onclick="selectGuest('3 Dewasa, 1 Anak')">
+                                        <div class="hotel-name">3 Dewasa, 1 Anak</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Kalender -->
+                        <div class="modal" id="calendarModal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Pilih Tanggal Check-in & Check-out</h2>
+                                    <span class="close-btn" onclick="document.getElementById('calendarModal').classList.remove('active')">&times;</span>
+                                </div>
+                                <div class="modal-body calendar-modal">
+                                    <div class="calendar-header">
+                                        <div class="calendar-nav">
+                                            <div class="nav-btn" onclick="previousMonth()">‹</div>
+                                            <div class="current-month" id="currentMonth"></div>
+                                            <div class="nav-btn" onclick="nextMonth()">›</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="calendar-grid" id="calendarGrid"></div>
+
+                                    <div class="selected-dates" id="selectedDates">
+                                        <strong>Check-in:</strong> Belum dipilih<br>
+                                        <strong>Check-out:</strong> Belum dipilih
+                                    </div>
+
+                                    <button class="confirm-btn" onclick="confirmDates()">KONFIRMASI TANGGAL</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Global variables
+                        let currentYear = 2025;
+                        let currentMonth = 0;
+                        let checkInDate = null;
+                        let checkOutDate = null;
+
+                        const monthNames = [
+                            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                        ];
+
+                        const dayNames = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+
+                        // Location functions
+                        function openLocation() {
+                            document.getElementById('locationModal').classList.add('active');
+                        }
+
+                        function selectLocation(cityName) {
+                            document.getElementById('locationText').textContent = cityName;
+                            document.getElementById('locationModal').classList.remove('active');
+                            // Update persisted search data (merge without overwriting other fields)
+                            const data = JSON.parse(localStorage.getItem('hotelSearchData') || '{}');
+                            data.city = cityName;
+                            localStorage.setItem('hotelSearchData', JSON.stringify(data));
+                        }
+
+                        // Calendar functions
+                        function openCalendar() {
+                            document.getElementById('calendarModal').classList.add('active');
+                        }
+
+                        function renderCalendar() {
+                            const monthYear = document.getElementById('currentMonth');
+                            monthYear.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+                            const grid = document.getElementById('calendarGrid');
+                            grid.innerHTML = '';
+
+                            // Header hari
+                            dayNames.forEach(day => {
+                                const header = document.createElement('div');
+                                header.className = 'day-header';
+                                header.textContent = day;
+                                grid.appendChild(header);
+                            });
+
+                            // Hitung hari pertama dan total hari
+                            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+                            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+                            // Cells kosong sebelum tanggal 1
+                            for (let i = 0; i < firstDay; i++) {
+                                const empty = document.createElement('div');
+                                empty.className = 'day-cell empty';
+                                grid.appendChild(empty);
+                            }
+
+                            // Cells tanggal
+                            for (let day = 1; day <= daysInMonth; day++) {
+                                const cell = document.createElement('div');
+                                cell.className = 'day-cell';
+                                cell.textContent = day;
+
+                                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+                                if (dateStr === checkInDate || dateStr === checkOutDate) {
+                                    cell.classList.add('selected');
+                                }
+
+                                cell.onclick = () => selectDate(dateStr, day);
+                                grid.appendChild(cell);
+                            }
+                        }
+
+                        function selectDate(dateStr, day) {
+                            if (!checkInDate || (checkInDate && checkOutDate)) {
+                                checkInDate = dateStr;
+                                checkOutDate = null;
+                            } else if (checkInDate && !checkOutDate) {
+                                if (new Date(dateStr) > new Date(checkInDate)) {
+                                    checkOutDate = dateStr;
+                                } else {
+                                    checkInDate = dateStr;
+                                    checkOutDate = null;
+                                }
+                            }
+
+                            updateSelectedDates();
+                            renderCalendar();
+                        }
+
+                        function updateSelectedDates() {
+                            const display = document.getElementById('selectedDates');
+                            const checkIn = checkInDate ? formatDate(checkInDate) : 'Belum dipilih';
+                            const checkOut = checkOutDate ? formatDate(checkOutDate) : 'Belum dipilih';
+                            display.innerHTML = `<strong>Check-in:</strong> ${checkIn}<br><strong>Check-out:</strong> ${checkOut}`;
+                        }
+
+                        function formatDate(dateStr) {
+                            const date = new Date(dateStr);
+                            return `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+                        }
+
+                        function previousMonth() {
+                            currentMonth--;
+                            if (currentMonth < 0) {
+                                currentMonth = 11;
+                                currentYear--;
+                                if (currentYear < 2025) currentYear = 2025;
+                            }
+                            renderCalendar();
+                        }
+
+                        function nextMonth() {
+                            currentMonth++;
+                            if (currentMonth > 11) {
+                                currentMonth = 0;
+                                currentYear++;
+                                if (currentYear > 2026) currentYear = 2026;
+                            }
+                            renderCalendar();
+                        }
+
+                        function confirmDates() {
+                            if (checkInDate && checkOutDate) {
+                                const checkIn = new Date(checkInDate);
+                                const checkOut = new Date(checkOutDate);
+                                const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+
+                                document.getElementById('calendarText').textContent = `${formatDate(checkInDate)} - ${formatDate(checkOutDate)}`;
+                                document.getElementById('nightText').textContent = `${nights} Malam`;
+                                document.getElementById('calendarModal').classList.remove('active');
+                            } else {
+                                alert('Silakan pilih tanggal check-in dan check-out terlebih dahulu!');
+                            }
+                        }
+
+                        function confirmDates() {
+                            if (checkInDate && checkOutDate) {
+                                const checkIn = new Date(checkInDate);
+                                const checkOut = new Date(checkOutDate);
+                                const nights = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+
+                                document.getElementById('calendarText').textContent = `${formatDate(checkInDate)} - ${formatDate(checkOutDate)}`;
+                                document.getElementById('nightText').textContent = `${nights} Malam`;
+                                document.getElementById('calendarModal').classList.remove('active');
+                            } else {
+                                alert('Silakan pilih tanggal check-in dan check-out terlebih dahulu!');
+                            }
+                        }
+
+                        // Guest functions
+                        function selectGuest(guestInfo) {
+                            document.getElementById('guestText').textContent = guestInfo;
+                            document.getElementById('guestModal').classList.remove('active');
+                        }
+
+                        // Search function
+                        function searchHotel() {
+                            const location = document.getElementById('locationText').textContent;
+                            const dates = document.getElementById('calendarText').textContent;
+
+                            if (location === 'Pilih Lokasi' || dates === 'Kalender') {
+                                alert('Silakan lengkapi lokasi dan tanggal terlebih dahulu!');
+                            } else {
+                                // Persist search data and redirect to results page
+                                const data = {
+                                    city: location,
+                                    dates: dates,
+                                    nights: document.getElementById('nightText').textContent,
+                                    guests: document.getElementById('guestText').textContent
+                                };
+                                localStorage.setItem('hotelSearchData', JSON.stringify(data));
+                                window.location.href = 'carihotel.html';
+                            }
+                        }
+
+                        // Filter functions
+                        let selectedFilters = {
+                            star: [],
+                            facility: [],
+                            distance: null,
+                            minPrice: 500000,
+                            maxPrice: 3000000
+                        };
+
+                        function toggleFilter(element, type, value) {
+                            if (type === 'facility') {
+                                // Hanya boleh pilih satu fasilitas
+                                const isActive = element.classList.contains('active');
+                                document.querySelectorAll('.filter-option[data-filter="facility"]').forEach(opt => opt.classList.remove('active'));
+                                if (!isActive) {
+                                    element.classList.add('active');
+                                    selectedFilters.facility = [value];
+                                } else {
+                                    selectedFilters.facility = [];
+                                }
+                                return;
+                            }
+
+                            element.classList.toggle('active');
+
+                            if (type === 'star') {
+                                const index = selectedFilters[type].indexOf(value);
+                                if (index > -1) {
+                                    selectedFilters[type].splice(index, 1);
+                                } else {
+                                    selectedFilters[type].push(value);
+                                }
+                            } else if (type === 'distance') {
+                                // Untuk distance, hanya bisa pilih satu
+                                document.querySelectorAll('.filter-option').forEach(opt => {
+                                    if (opt !== element && opt.textContent.includes('km')) {
+                                        opt.classList.remove('active');
+                                    }
+                                });
+                                selectedFilters.distance = element.classList.contains('active') ? value : null;
+                            }
+                        }
+
+                        function applyFilter() {
+                            selectedFilters.minPrice = document.getElementById('minPrice').value;
+                            selectedFilters.maxPrice = document.getElementById('maxPrice').value;
+
+                            let filterText = 'Filter: ';
+                            let filterParts = [];
+
+                            if (selectedFilters.star.length > 0) {
+                                filterParts.push(selectedFilters.star.length + ' bintang');
+                            }
+                            if (selectedFilters.facility.length > 0) {
+                                filterParts.push(selectedFilters.facility.length + ' fasilitas');
+                            }
+                            if (selectedFilters.distance) {
+                                filterParts.push('< ' + selectedFilters.distance + ' km');
+                            }
+
+                            if (filterParts.length > 0) {
+                                filterText += filterParts.join(', ');
+                            } else {
+                                filterText = 'Filter';
+                            }
+
+                            document.getElementById('filterText').textContent = filterText;
+                            document.getElementById('filterModal').classList.remove('active');
+                        }
+
+                        // Initialize calendar
+                        renderCalendar();
+                    </script>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Stasiun Keberangkatan</title>
+    <style>
+         :root {
+            --primary: #fbc02d;
+            --grey: #f5f5f5;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            display: flex;
+            justify-content: center;
+        }
+        
+        .calendar-app {
+            width: 100%;
+            max-width: 900px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Header */
+        
+        header.top-nav {
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+        }
+        
+        .back-link {
+            position: absolute;
+            left: 20px;
+            font-size: 35px;
+            cursor: pointer;
+            color: black;
+            text-decoration: none;
+            line-height: 1;
+        }
+        
+        .header-title {
+            font-size: 32px;
+            font-weight: bold;
+            border-bottom: 4px solid white;
+            padding-bottom: 2px;
+        }
+        /* Content Card */
+        
+        main.content-card {
+            background: white;
+            border-radius: 35px 35px 0 0;
+            padding: 40px;
+            flex-grow: 1;
+            box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        /* Search Box */
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--grey);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        .search-box input {
+            border: none;
+            background: transparent;
+            margin-left: 10px;
+            width: 100%;
+            font-size: 18px;
+            outline: none;
+        }
+        /* List Items */
+        
+        .station-option {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .station-option:hover {
+            background-color: #fffde7;
+        }
+        
+        .station-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .station-city {
+            font-size: 16px;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calendar-app">
+        <header class="top-nav">
+            <a href="antarkota3.html" class="back-link">‹</a>
+            <h1 class="header-title">Lokal</h1>
+        </header>
+
+        <main class="content-card">
+            <h2>Pilih Keberangkatan</h2>
+
+            <div class="search-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" placeholder="Cari stasiun atau kota..." onkeyup="searchStations(this.value)">
+            </div>
+
+            <div id="station-list"></div>
+        </main>
+    </div>
+
+    <script>
+        // Data stasiun sekarang ada 2 pilihan
+        const stations = [{
+            name: 'Kiaracondong',
+            city: 'Bandung'
+        }, {
+            name: 'Pasar Senen',
+            city: 'Jakarta'
+        }];
+
+        function selectStation(name) {
+            // Simpan pilihan ke localStorage
+            localStorage.setItem('selectedDeparture', name);
+            // Pindah kembali ke antarkota3.html
+            window.location.href = 'antarkota3.html';
+        }
+
+        function renderStations(data) {
+            document.getElementById('station-list').innerHTML = data.map(s => `
+                <div class="station-option" onclick="selectStation('${s.name}')">
+                    <div class="station-name">${s.name}</div>
+                    <div class="station-city">${s.city}</div>
+                </div>
+            `).join('');
+        }
+
+        function searchStations(query) {
+            const filtered = stations.filter(s =>
+                s.name.toLowerCase().includes(query.toLowerCase()) ||
+                s.city.toLowerCase().includes(query.toLowerCase())
+            );
+            renderStations(filtered);
+        }
+
+        // Jalankan render pertama kali saat halaman dibuka
+        renderStations(stations);
+    </script>
+</body>
+
+</html>

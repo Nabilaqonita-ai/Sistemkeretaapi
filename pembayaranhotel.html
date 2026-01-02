@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembayaran Berhasil</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(180deg, #FFCC00, #FFD700, #FFFFFF);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .receipt-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        .bank-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .transaction-time {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .transaction-amount {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00C853;
+            /* Hijau Sukses */
+            margin: 20px 0;
+        }
+        
+        .promo-badge {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .status-label {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00C853;
+            margin-top: 10px;
+        }
+        
+        .transaction-details {
+            border-top: 2px dashed #EEE;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: left;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .detail-label {
+            color: #888;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .btn-ok {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: #E70011;
+            color: #fff;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="receipt-card">
+        <div class="bank-name">E-Receipt Hotel</div>
+        <div class="transaction-time" id="timeText">--:--</div>
+
+        <div class="promo-badge">DISKON PROMO 100%</div>
+        <div class="transaction-amount">Rp 0</div>
+
+        <div class="status-section">
+            <svg width="80" height="80" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="50" fill="#00C853"/>
+                <path d="M40 60L55 75L85 45" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="status-label">Berhasil</div>
+        </div>
+
+        <div class="transaction-details">
+            <div class="detail-row">
+                <span class="detail-label">Nama Hotel</span>
+                <span class="detail-value" id="hotelName">--</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Jumlah Tamu</span>
+                <span class="detail-value" id="guestInfo">--</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">ID Transaksi</span>
+                <span class="detail-value" id="txnId">--</span>
+            </div>
+        </div>
+
+        <button class="btn-ok" onclick="location.href='beranda.html'">Selesai</button>
+    </div>
+
+    <script>
+        // FUNGSI OTOMATIS
+        function loadBookingData() {
+            // 1. Coba ambil dari URL (jika ada)
+            const params = new URLSearchParams(window.location.search);
+
+            // 2. Coba ambil dari Memori Browser (LocalStorage)
+            // Ini cadangan jika URL kosong
+            const savedHotel = localStorage.getItem('selectedHotel') || "Grand Aston Jakarta";
+            const savedGuests = localStorage.getItem('guestCount') || "2 Dewasa, 1 Anak";
+
+            // 3. Masukkan ke tampilan
+            document.getElementById('hotelName').textContent = params.get('hotel') || savedHotel;
+            document.getElementById('guestInfo').textContent = params.get('guests') || savedGuests;
+
+            // 4. Waktu Otomatis
+            document.getElementById('timeText').textContent = new Date().toLocaleString('id-ID');
+
+            // 5. ID Transaksi Acak Otomatis
+            const randomTxn = "INV-" + Math.floor(Math.random() * 1000000000);
+            document.getElementById('txnId').textContent = params.get('txn') || randomTxn;
+        }
+
+        // Jalankan saat halaman dibuka
+        window.onload = loadBookingData;
+    </script>
+
+</body>
+
+</html>

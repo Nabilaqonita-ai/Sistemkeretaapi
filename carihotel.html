@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Pencarian Hotel - Kereta API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        
+        .main-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #fdfbd4;
+            padding-bottom: 50px;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px 100px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-btn {
+            width: 50px;
+            height: 50px;
+            background: url('images/iconpanah.png') no-repeat center;
+            background-size: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .title {
+            font-family: 'Times New Roman', serif;
+            font-size: 42px;
+            font-weight: 700;
+            margin-left: 30px;
+        }
+        
+        .search-info {
+            background: white;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1400px;
+            padding: 25px 40px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .search-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-item img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .search-item span {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .edit-btn {
+            padding: 10px 25px;
+            background: #ffcc00;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .edit-btn:hover {
+            background: #e6b800;
+        }
+        
+        .content-area {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        
+        .filter-sidebar {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-title {
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .filter-section {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-section:last-child {
+            border-bottom: none;
+        }
+        
+        .filter-subtitle {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .filter-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .filter-option label {
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .results-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .results-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .results-count {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .hotel-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 250px 1fr auto;
+            gap: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .hotel-card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .hotel-image {
+            width: 250px;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .hotel-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .hotel-name {
+            font-family: 'Times New Roman', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .hotel-location {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .hotel-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .rating-stars {
+            color: #ff9800;
+            font-size: 18px;
+        }
+        
+        .rating-score {
+            background: #e70011;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+        
+        .hotel-facilities {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .facility-badge {
+            background: #f5f5f5;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .hotel-pricing {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        
+        .current-price {
+            color: #e70011;
+            font-size: 32px;
+            font-weight: 700;
+            margin: 5px 0;
+        }
+        
+        .price-per-night {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .book-btn {
+            padding: 15px 40px;
+            background: #e70011;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .book-btn:hover {
+            background: #cc000f;
+            transform: translateY(-2px);
+        }
+        
+        .no-results {
+            background: white;
+            padding: 80px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .no-results h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .no-results p {
+            color: #666;
+            font-size: 20px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="back-btn" onclick="location.href='pesanhotel.html'"></div>
+            <span class="title">Hasil Pencarian Hotel</span>
+        </div>
+
+        <!-- Search Info Summary -->
+        <div class="search-info">
+            <div class="search-details">
+                <div class="search-item">
+                    <img src="images/lokasihotel.png" alt="Lokasi">
+                    <span id="selectedCity">Bandung</span>
+                </div>
+                <div class="search-item">
+                    <img src="images/kalender.png" alt="Tanggal">
+                    <span id="selectedDates">15 Jan - 18 Jan 2025</span>
+                </div>
+                <div class="search-item">
+                    <span id="selectedNights">3 Malam</span>
+                </div>
+                <div class="search-item">
+                    <span id="selectedGuests">2 Dewasa, 1 Anak</span>
+                </div>
+                <button class="edit-btn" onclick="location.href='pesanhotel.html'">UBAH PENCARIAN</button>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+
+
+            <!-- Results Area -->
+            <div class="results-area">
+                <!-- Results Header -->
+                <div class="results-header">
+                    <div class="results-count" id="resultsCount">Ditemukan <strong>3 hotel</strong> di Bandung</div>
+                </div>
+
+                <!-- Hotel Cards -->
+                <div class="hotel-card" data-city="Bandung" data-star="5" data-facilities="wifi" data-distance="1" data-name="The Trans Luxury Hotel" data-price="2500000">
+                    <div class="hotel-image">HOTEL 5⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">The Trans Luxury Hotel</div>
+                            <div class="hotel-location">📍 Jl. Gatot Subroto No.289 • 0.8 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.8</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">WiFi Gratis</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 2.500.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <div class="hotel-card" data-city="Bandung" data-star="5" data-facilities="pool" data-distance="3" data-name="Hilton Bandung" data-price="2200000">
+                    <div class="hotel-image">HOTEL 5⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">Hilton Bandung</div>
+                            <div class="hotel-location">📍 Jl. HOS Tjokroaminoto No.41 • 2.5 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.7</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">Kolam Renang</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 2.200.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <div class="hotel-card" data-city="Bandung" data-star="5" data-facilities="parking" data-distance="5" data-name="The Papandayan" data-price="1800000">
+                    <div class="hotel-image">HOTEL 5⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">The Papandayan</div>
+                            <div class="hotel-location">📍 Jl. Gatot Subroto No.83 • 4.2 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.6</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">Parkir Gratis</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 1.800.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <!-- Jakarta hotels -->
+                <div class="hotel-card" data-city="Jakarta" data-star="5" data-facilities="wifi" data-distance="1" data-name="Hotel Grand Indonesia" data-price="2700000">
+                    <div class="hotel-image">HOTEL 5⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">Hotel Grand Indonesia</div>
+                            <div class="hotel-location">📍 Jl. MH Thamrin No.1 • 0.9 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.7</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">WiFi Gratis</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 2.700.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <div class="hotel-card" data-city="Jakarta" data-star="4" data-facilities="pool" data-distance="3" data-name="Hotel Aryaduta Jakarta" data-price="1900000">
+                    <div class="hotel-image">HOTEL 4⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">Hotel Aryaduta Jakarta</div>
+                            <div class="hotel-location">📍 Jl. Kebon Kacang • 2.8 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.5</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">Kolam Renang</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 1.900.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <div class="hotel-card" data-city="Jakarta" data-star="5" data-facilities="parking" data-distance="5" data-name="Hotel Indonesia Kempinski" data-price="3200000">
+                    <div class="hotel-image">HOTEL 5⭐</div>
+                    <div class="hotel-info">
+                        <div>
+                            <div class="hotel-name">Hotel Indonesia Kempinski</div>
+                            <div class="hotel-location">📍 Jl. MH Thamrin No.6 • 4.0 km dari Stasiun</div>
+                            <div class="hotel-rating">
+                                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                                <span class="rating-score">4.8</span>
+                            </div>
+                        </div>
+                        <div class="hotel-facilities">
+                            <span class="facility-badge">Parkir Gratis</span>
+                        </div>
+                    </div>
+                    <div class="hotel-pricing">
+                        <div>
+                            <div class="current-price">Rp 3.200.000</div>
+                            <div class="price-per-night">per malam</div>
+                        </div>
+                        <button class="book-btn" onclick="goToPayment(this)">PESAN</button>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div class="no-results hidden" id="noResults">
+                    <h2>Hotel Tidak Ditemukan</h2>
+                    <p>Tidak ada hotel yang sesuai dengan filter yang dipilih.<br>Silakan ubah filter pencarian Anda.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToPayment(button) {
+            const card = button.closest('.hotel-card');
+            if (!card) return;
+
+            const hotel = card.getAttribute('data-name') || card.querySelector('.hotel-name').textContent;
+            const price = card.getAttribute('data-price') || extractPrice(card.querySelector('.current-price').textContent);
+            const searchData = JSON.parse(localStorage.getItem('hotelSearchData') || '{}');
+            const guests = searchData.guests || '1 Dewasa, 0 Anak';
+
+            const params = new URLSearchParams({
+                hotel,
+                guests,
+                price
+            });
+            window.location.href = 'pembayaranberhasilhotel.html?' + params.toString();
+        }
+
+        function extractPrice(priceText) {
+            // e.g. 'Rp 2.500.000' -> '2500000'
+            return priceText.replace(/[^0-9]/g, '');
+        }
+
+        function formatRupiah(amount) {
+            if (!amount) return 'Rp 0';
+            const num = typeof amount === 'number' ? amount : parseInt(amount, 10);
+            return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function updateResultsByCity() {
+            const searchData = JSON.parse(localStorage.getItem('hotelSearchData') || '{}');
+            const city = searchData.city || 'Bandung';
+
+            // Update header info
+            if (searchData.city) document.getElementById('selectedCity').textContent = searchData.city;
+            if (searchData.dates) document.getElementById('selectedDates').textContent = searchData.dates;
+            if (searchData.nights) document.getElementById('selectedNights').textContent = searchData.nights;
+            if (searchData.guests) document.getElementById('selectedGuests').textContent = searchData.guests;
+
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            let visibleCount = 0;
+
+            hotelCards.forEach(card => {
+                const cardCity = card.getAttribute('data-city') || 'Bandung';
+                if (cardCity === city) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            const resultsCount = document.getElementById('resultsCount');
+            const noResults = document.getElementById('noResults');
+
+            if (visibleCount === 0) {
+                resultsCount.classList.add('hidden');
+                noResults.classList.remove('hidden');
+            } else {
+                resultsCount.classList.remove('hidden');
+                noResults.classList.add('hidden');
+                resultsCount.innerHTML = `Ditemukan <strong>${visibleCount} hotel</strong> di ${city}`;
+            }
+        }
+
+        window.onload = function() {
+            updateResultsByCity();
+        };
+    </script>
+</body>
+
+</html>

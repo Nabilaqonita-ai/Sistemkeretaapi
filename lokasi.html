@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KAI Access - Pilih Layanan</title>
+    <style>
+         :root {
+            --yellow: #FFCC00;
+            --bg: #fdf8e9;
+            --muted: #666
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif
+        }
+        
+        html,
+        body {
+            height: 100%
+        }
+        
+        body {
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased
+        }
+        
+        .yellow-header {
+            background: var(--yellow);
+            padding: 20px 40px;
+            height: 100px;
+            display: flex;
+            align-items: center
+        }
+        
+        .back-button img {
+            width: 35px;
+            display: block
+        }
+        
+        .white-card {
+            background: #fff;
+            margin-top: -30px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 50px 40px;
+            min-height: calc(100vh - 70px)
+        }
+        
+        .hero-text h1 {
+            font-size: 60px;
+            font-weight: 700
+        }
+        
+        .hero-text p {
+            color: var(--muted);
+            font-size: 20px;
+            margin-bottom: 50px
+        }
+        /* Service icons */
+        
+        .service-nav {
+            display: flex;
+            justify-content: flex-start;
+            /* rata kiri */
+            gap: 150px;
+            /* jarak antar ikon */
+            padding: 0 150px 0 50px;
+            /* jarak dari card putih */
+            margin-bottom: 100px;
+            box-sizing: border-box;
+        }
+        
+        .service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700;
+            font-size: 16px;
+            gap: 12px;
+            /* jarak gambar ke teks */
+        }
+        
+        .service-item img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            transition: transform .2s;
+            display: block;
+        }
+        
+        .service-item.unclickable {
+            pointer-events: none;
+            cursor: default;
+        }
+        
+        .service-item:hover:not(.unclickable) img {
+            transform: scale(1.1);
+        }
+        /* Popular destinations */
+        
+        .popular-destinations h2 {
+            font-size: 32px;
+            margin-bottom: 30px
+        }
+        
+        .destination-grid {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding-bottom: 20px
+        }
+        
+        .destination-grid::-webkit-scrollbar {
+            display: none
+        }
+        
+        .destination-card {
+            flex: 0 0 auto;
+            width: 400px;
+            height: 220px;
+            border-radius: 35px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15)
+        }
+        
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+        /* Responsive tweaks */
+        
+        @media (max-width: 900px) {
+            .hero-text h1 {
+                font-size: 40px
+            }
+            .service-nav {
+                gap: 40px;
+                /* reduced gap on smaller screens */
+                padding: 0 20px;
+                /* reduce side padding on mobile */
+            }
+            .service-item img {
+                width: 90px;
+                height: 90px
+            }
+            .destination-card {
+                width: 320px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <header class="yellow-header">
+            <a href="beranda.html" class="back-button" aria-label="Beranda">
+                <img src="images/iconpanah.png" alt="Back">
+            </a>
+        </header>
+
+        <main class="white-card">
+            <div class="hero-text">
+                <h1>Kereta</h1>
+                <p>Layanan Kereta Api tut tut</p>
+            </div>
+
+            <div class="service-nav">
+                <a href="antarkota1.html" class="service-item">
+                    <img src="images/antarkotaya.png" alt="Antar Kota">
+                    <span>Antar Kota</span>
+                </a>
+
+                <a href="lokal.html" class="service-item">
+                    <img src="images/lokalya.png" alt="Lokal">
+                    <span>Lokal</span>
+                </a>
+
+                <a href="bandara.html" class="service-item">
+                    <img src="images/bandaraya.png" alt="Bandara">
+                    <span>Bandara</span>
+                </a>
+            </div>
+
+
+
+            <section class="popular-destinations">
+                <h2>Tujuan Populer</h2>
+                <div class="destination-grid">
+                    <div class="destination-card">
+                        <img src="images/jakartaya.png" alt="Jakarta">
+                    </div>
+                    <div class="destination-card">
+                        <img src="images/bandungya.png" alt="Bandung">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

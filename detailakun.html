@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Akun - Interactive Wide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            min-height: 100vh;
+        }
+        
+        .serif {
+            font-family: 'Times New Roman', serif;
+        }
+        /* Header Full Width */
+        
+        .header {
+            background: #FFCC00;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            flex: 1;
+            text-align: center;
+        }
+        /* Layout Grid */
+        
+        .content-container {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+        }
+        
+        .privacy-box {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 20px;
+            height: fit-content;
+        }
+        /* Form Grid Menyamping */
+        
+        .form-grid-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .form-field {
+            background: #fff;
+            border: 2px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 110px;
+            transition: 0.3s;
+        }
+        
+        .full-span {
+            grid-column: span 2;
+        }
+        
+        .field-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        /* Styling Input saat mode Edit */
+        
+        .edit-input {
+            width: 100%;
+            padding: 8px;
+            font-size: 18px;
+            border: 1px solid #FFCC00;
+            border-radius: 8px;
+            font-family: 'Times New Roman', serif;
+            outline: none;
+        }
+        
+        .field-value {
+            font-size: 20px;
+            color: #000;
+            font-weight: 500;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .field-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        /* Buttons */
+        
+        .btn-ubah {
+            border: 2px solid #E70011;
+            background: #fff;
+            color: #E70011;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            min-width: 90px;
+        }
+        
+        .btn-ubah.saving {
+            background: #00C853;
+            border-color: #00C853;
+            color: #fff;
+        }
+        
+        .footer-actions {
+            grid-column: span 2;
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .btn-large {
+            flex: 1;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            transition: 0.3s;
+        }
+        
+        .btn-tambah {
+            background: #E70011;
+            color: #fff;
+            border: none;
+        }
+        
+        .btn-hapus {
+            background: #fff;
+            color: #E70011;
+            border: 3px solid #E70011;
+        }
+        
+        @media (max-width: 1000px) {
+            .content-container {
+                grid-template-columns: 1fr;
+            }
+            .form-grid-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .full-span {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="page-title serif">Detail Akun</h1>
+    </header>
+
+    <div class="content-container">
+        <div class="privacy-box">
+            <h2 class="serif" style="font-size: 28px; margin-bottom: 15px;">Informasi Pribadi</h2>
+            <p style="color: #666; line-height: 1.6;">Klik tombol "UBAH" untuk memperbarui data diri Anda secara langsung.</p>
+        </div>
+
+        <div class="form-grid-wrapper">
+
+            <div class="form-field">
+                <label class="field-label">No.Telepon</label>
+                <div class="field-content">
+                    <span class="field-value" id="val-telp">********4224</span>
+                    <button class="btn-ubah" onclick="toggleEdit('telp')">UBAH</button>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label class="field-label">Email</label>
+                <div class="field-content">
+                    <span class="field-value" id="val-email">na************6@gmail.com</span>
+                    <button class="btn-ubah" onclick="toggleEdit('email')">UBAH</button>
+                </div>
+            </div>
+
+            <div class="form-field full-span">
+                <div class="field-content">
+                    <div style="display: flex; gap: 60px;">
+                        <div>
+                            <label class="field-label">Tipe ID</label>
+                            <span class="field-value" id="val-idtype">KTP</span>
+                        </div>
+                        <div>
+                            <label class="field-label">Nomor Identitas</label>
+                            <span class="field-value" id="val-idnum">*************003</span>
+                        </div>
+                    </div>
+                    <button class="btn-ubah" onclick="toggleEditIdentitas()">UBAH</button>
+                </div>
+            </div>
+
+            <div class="form-field full-span">
+                <label class="field-label">Nama Lengkap</label>
+                <div class="field-content">
+                    <span class="field-value" id="val-nama">NABILA QONITA</span>
+                    <button class="btn-ubah" onclick="toggleEdit('nama')">UBAH</button>
+                </div>
+            </div>
+
+            <div class="footer-actions">
+                <div class="btn-large btn-tambah" onclick="location.href='akun.html'">SIMPAN SEMUA PERUBAHAN</div>
+                <div class="btn-large btn-hapus" onclick="location.href='akun.html'">BATAL</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleEdit(id) {
+            const span = document.getElementById('val-' + id);
+            const btn = span.nextElementSibling;
+
+            if (btn.textContent === "UBAH") {
+                // Berubah jadi mode Input
+                const currentVal = span.textContent;
+                span.innerHTML = `<input type="text" class="edit-input" id="input-${id}" value="${currentVal}">`;
+                btn.textContent = "SIMPAN";
+                btn.classList.add('saving');
+            } else {
+                // Simpan data dan balik jadi Teks
+                const inputVal = document.getElementById('input-' + id).value;
+                span.textContent = inputVal;
+                btn.textContent = "UBAH";
+                btn.classList.remove('saving');
+            }
+        }
+
+        function toggleEditIdentitas() {
+            const idType = document.getElementById('val-idtype');
+            const idNum = document.getElementById('val-idnum');
+            const btn = idNum.closest('.field-content').querySelector('.btn-ubah');
+
+            if (btn.textContent === "UBAH") {
+                idType.innerHTML = `<input type="text" class="edit-input" style="width:80px" id="input-idtype" value="${idType.textContent}">`;
+                idNum.innerHTML = `<input type="text" class="edit-input" id="input-idnum" value="${idNum.textContent}">`;
+                btn.textContent = "SIMPAN";
+                btn.classList.add('saving');
+            } else {
+                idType.textContent = document.getElementById('input-idtype').value;
+                idNum.textContent = document.getElementById('input-idnum').value;
+                btn.textContent = "UBAH";
+                btn.classList.remove('saving');
+            }
+        }
+    </script>
+</body>
+
+</html>

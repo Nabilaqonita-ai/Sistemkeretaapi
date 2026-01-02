@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Tiket Kereta - Full Desktop</title>
+    <style>
+         :root {
+            --primary-yellow: #FFD600;
+            --soft-yellow: #FFFDE7;
+            --purple: #9747FF;
+            --red: #E70011;
+            --border: #E0E0E0;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--soft-yellow);
+        }
+        
+        .full-wrapper {
+            width: 100%;
+            background-color: white;
+            min-height: 100vh;
+        }
+        /* Header */
+        
+        header {
+            background-color: var(--primary-yellow);
+            padding: 20px 5%;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-info {
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .route-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        .arrow-icon {
+            width: 25px;
+            height: auto;
+        }
+        
+        .date-subtext {
+            font-size: 14px;
+            color: #333;
+        }
+        /* Navigasi Tanggal 19 - 24 Des */
+        
+        .date-nav {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            padding: 0 5%;
+        }
+        
+        .date-nav input {
+            display: none;
+        }
+        
+        .date-label {
+            flex: 1;
+            text-align: center;
+            padding: 22px 10px;
+            cursor: pointer;
+            color: #888;
+            font-size: 15px;
+            border-bottom: 5px solid transparent;
+            transition: 0.3s;
+        }
+        
+        .date-nav input:checked+.date-label {
+            color: var(--red);
+            font-weight: bold;
+            border-bottom: 5px solid var(--red);
+            background-color: #FFF8F8;
+        }
+        /* Main Content */
+        
+        .main-content {
+            padding: 40px 5%;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+        /* Train Card */
+        
+        .train-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .left-side {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .class-badge {
+            background-color: var(--purple);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            width: fit-content;
+        }
+        
+        .train-name {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 5px 0;
+            color: #222;
+        }
+        /* Timeline Vertikal dengan Estimasi */
+        
+        .timeline {
+            position: relative;
+            padding-left: 35px;
+            margin-top: 15px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            font-size: 17px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            border: 2.5px solid #ccc;
+        }
+        
+        .timeline-item.end::before {
+            background: var(--red);
+            border-color: var(--red);
+        }
+        
+        .timeline-line-box {
+            position: relative;
+            padding: 5px 0;
+            margin-left: -23px;
+            border-left: 2px solid #ccc;
+        }
+        
+        .duration-text {
+            font-size: 13px;
+            color: #888;
+            padding-left: 25px;
+        }
+        /* Right Side: Status di atas Harga */
+        
+        .right-side {
+            flex: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .status-badge {
+            border: 2px solid var(--purple);
+            color: var(--purple);
+            padding: 6px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        
+        .status-red {
+            border-color: var(--red);
+            color: var(--red);
+        }
+        
+        .price-label {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .price-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 8px 0 25px;
+            color: #000;
+        }
+        
+        .btn-pilih {
+            border: 3px solid var(--red);
+            color: var(--red);
+            background: white;
+            padding: 14px 50px;
+            border-radius: 40px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        .btn-pilih:hover {
+            background: var(--red);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="full-wrapper">
+        <header>
+            <a href="antarkota5.html" class="back-btn">
+                <img src="images/iconpanah.png" alt="Kembali" width="30">
+            </a>
+            <div class="header-info">
+                <div class="route-display">
+                    <span id="origin-city">KIARACONDONG (KAC)</span>
+
+                    <img src="images/tandapanahkanan.png" alt="ke" class="arrow-icon">
+
+                    <span id="dest-city">PASARSENEN (PSE)</span>
+                </div>
+                <div class="date-subtext">Jumat, 19 Desember 2025 • Jumat, 19 Desember 2025</div>
+            </div>
+        </header>
+
+        <nav class="date-nav">
+            <input type="radio" name="date" id="t1" checked><label for="t1" class="date-label">Jumat, 19 Des</label>
+            <input type="radio" name="date" id="t2"><label for="t2" class="date-label">Sabtu, 20 Des</label>
+            <input type="radio" name="date" id="t3"><label for="t3" class="date-label">Minggu, 21 Des</label>
+            <input type="radio" name="date" id="t4"><label for="t4" class="date-label">Senin, 22 Des</label>
+            <input type="radio" name="date" id="t5"><label for="t5" class="date-label">Selasa, 23 Des</label>
+            <input type="radio" name="date" id="t6"><label for="t6" class="date-label">Rabu, 24 Des</label>
+        </nav>
+
+        <main class="main-content">
+            <div class="section-title">Kereta Keberangkatan</div>
+
+            <div class="train-card">
+                <div class="left-side">
+                    <div class="class-badge">Ekonomi</div>
+                    <h3 class="train-name">MATARMAJA (KRT02)</h3>
+                    <div class="timeline">
+                        <div class="timeline-item"><strong>00:14</strong> <span class="station-name">Kiaracondong (KAC)</span></div>
+
+                        <div class="timeline-line-box">
+                            <div class="duration-text">04j 03m</div>
+                        </div>
+
+                        <div class="timeline-item end"><strong>04:17</strong> <span class="station-name">Pasarsenen (PSE)</span></div>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="status-badge">Tersedia</div>
+                    <p class="price-label">Harga Mulai Dari:</p>
+                    <p class="price-value">Rp63.000 / pax</p>
+                    <a href="pesantiket.html" class="btn-pilih">PILIH KERETA</a>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promo - Kereta API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --yellow: #FFCC00;
+            --red: #E70011;
+            --purple: #9747FF;
+            --gray: #636363;
+            --dark: #333;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #fcca00, #fefae8);
+            overflow-x: hidden;
+        }
+        
+        .promo-page {
+            max-width: 100%;
+            min-height: 100vh;
+            padding: 20px 0;
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        /* Page Title */
+        
+        .page-title-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        
+        .page-title {
+            background: white;
+            padding: 15px 80px;
+            border-radius: 100px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-title h1 {
+            font-size: 64px;
+            font-weight: 400;
+            color: #000000;
+            font-family: Roboto, Arial, sans-serif;
+        }
+        /* Promo Container */
+        
+        .promo-container {
+            background: white;
+            border-radius: 40px 40px 0 0;
+            padding: 50px 20px 120px 70px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+            margin: 20px 0 0 0;
+            width: 100%;
+            max-width: none;
+            flex-grow: 1;
+        }
+        
+        .promo-grid {
+            display: flex;
+            gap: 150px;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .promo-card {
+            background: #FDFBD4;
+            border-radius: 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 405px;
+        }
+        
+        .promo-card:hover {
+            opacity: 0.95;
+        }
+        
+        .promo-image {
+            width: 405px;
+            height: 566px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .promo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .promo-content {
+            padding: 30px;
+            background: #FDFBD4;
+            height: 142px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .promo-link {
+            color: var(--red);
+            font-size: 36px;
+            text-decoration: underline;
+            font-weight: 400;
+            font-family: Times New Roman, Arial, sans-serif;
+            display: inline-block;
+            transition: all 0.3s;
+            line-height: 1.2;
+        }
+        
+        .promo-link:hover {
+            color: #ff3333;
+        }
+        /* Plus Icon */
+        
+        .plus-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 187px;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-self: center;
+        }
+        
+        .plus-icon-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .plus-icon-container img {
+            width: 187px;
+            height: 168px;
+            object-fit: contain;
+        }
+        /* Bottom Navigation */
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #FCD01E;
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0;
+            box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+        }
+        
+        .nav-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 12px;
+            transition: all 0.3s;
+            min-width: 68px;
+            text-decoration: none;
+        }
+        
+        .nav-item:hover {
+            background: #F5F5F5;
+        }
+        
+        .nav-item img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+        
+        .nav-item.active img {
+            transform: scale(1.08);
+            filter: brightness(0) saturate(100%) invert(18%) sepia(98%) saturate(6541%) hue-rotate(356deg) brightness(91%) contrast(114%);
+        }
+        /* Responsive */
+        
+        @media (max-width: 1200px) {
+            .promo-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .plus-icon-container {
+                margin-top: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 42px;
+            }
+            .promo-card {
+                width: 100%;
+                max-width: 405px;
+            }
+            .promo-image {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 405/566;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="promo-page">
+        <!-- Page Title -->
+        <div class="page-title-container">
+            <div class="page-title">
+                <h1>PROMO</h1>
+            </div>
+        </div>
+
+        <!-- Promo Container -->
+        <div class="promo-container">
+            <div class="promo-grid">
+                <!-- Promo Kereta -->
+                <div class="promo-card" onclick="showPromoAlert('kereta')">
+                    <div class="promo-image">
+                        <img src="images/promokereta.png" alt="Promo Kereta Api">
+                    </div>
+                    <div class="promo-content">
+                        <a href="#" class="promo-link" onclick="event.preventDefault(); showPromoAlert('kereta')">
+                            Click gambar ini untuk mendapatkan promo!
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Promo Hotel -->
+                <div class="promo-card" onclick="showPromoAlert('hotel')">
+                    <div class="promo-image">
+                        <img src="images/promohotel.png" alt="Promo Hotel" onerror="this.parentElement.innerHTML='<div style=\'color:#666;font-size:20px;\'>Gambar Promo Hotel</div>'">
+                    </div>
+                    <div class="promo-content">
+                        <a href="#" class="promo-link" onclick="event.preventDefault(); showPromoAlert('hotel')">
+                            Click gambar ini untuk mendapatkan promo!
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plus Icon -->
+                <div class="plus-icon-container" onclick="showEndMessage()">
+                    <img src="images/tandaplus.png" alt="Promo End" onerror="this.innerHTML='<div style=\'width:187px;height:168px;background:#ddd;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:80px;color:#999;\'>+</div>'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="beranda.html" class="nav-item">
+                <img src="images/beranda.png" alt="Beranda">
+            </a>
+            <a href="tiketsaya.html" class="nav-item">
+                <img src="images/tiketsaya.png" alt="Tiket Saya">
+            </a>
+            <a href="promo.html" class="nav-item active">
+                <img src="images/promo.png" alt="Promo">
+            </a>
+            <a href="akun.html" class="nav-item">
+                <img src="images/akun.png" alt="Akun">
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Notifikasi untuk promo
+        function showPromoAlert(type) {
+            if (type === 'kereta') {
+                alert('Promo Kereta Api hanya sampai tanggal 7 Desember 2025!\n\nDiskon 20% + Tiket Gratis\n\n✓ TIKET BERHASIL DIKLAIM!');
+            } else if (type === 'hotel') {
+                alert('Promo Pemesanan Hotel hanya sampai tanggal 7 Desember 2025!\n\nDiskon 25% + Tiket Gratis\n\n✓ TIKET BERHASIL DIKLAIM!');
+            }
+        }
+
+        // Notifikasi akhir promo
+        function showEndMessage() {
+            alert('Promo hanya sampai sini');
+        }
+
+        // Animasi klik
+        document.querySelectorAll('.promo-card, .plus-icon-container').forEach(element => {
+            element.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>

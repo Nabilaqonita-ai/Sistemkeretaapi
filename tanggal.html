@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Tanggal</title>
+    <style>
+         :root {
+            --primary-yellow: #fbc02d;
+            --purple-btn: #a450ff;
+            --blue-selected: #42a5f5;
+            --grey-disabled: #d1d1d1;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--primary-yellow);
+            display: flex;
+            justify-content: center;
+        }
+        
+        .calendar-app {
+            width: 100%;
+            max-width: 500px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header.top-nav {
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .back-link {
+            text-decoration: none;
+            color: black;
+            font-size: 30px;
+            position: absolute;
+            left: 20px;
+            top: 25px;
+        }
+        
+        .header-title {
+            font-size: 30px;
+            font-weight: bold;
+            border-bottom: 3px solid white;
+            display: inline-block;
+        }
+        
+        main.content-card {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            padding: 25px;
+            flex-grow: 1;
+            overflow-y: auto;
+            /* Agar bisa scroll ke bawah jika kepanjangan */
+        }
+        
+        .month-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            color: #333;
+        }
+        /* Grid Kalender */
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .day-name {
+            font-size: 11px;
+            color: #999;
+            font-weight: bold;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+        /* Sembunyikan Radio */
+        
+        input[type="radio"] {
+            display: none;
+        }
+        
+        .tgl-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+        /* Hover & Checked Effect */
+        
+        .tgl-label:hover:not(.disabled) {
+            background-color: #f0f0f0;
+        }
+        
+        input[type="radio"]:checked+.tgl-label {
+            background: var(--blue-selected) !important;
+            color: white !important;
+            font-weight: bold;
+        }
+        
+        .disabled {
+            color: var(--grey-disabled);
+            cursor: default;
+        }
+        
+        .btn-purple {
+            background: var(--purple-btn);
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calendar-app">
+        <header class="top-nav">
+            <a href="antarkota5.html" class="back-link">‹</a>
+            <h1 class="header-title">Lokal</h1>
+        </header>
+
+        <main class="content-card">
+            <div style="text-align:center; font-weight:bold; margin-bottom:15px;">Pilih Tanggal Berangkat</div>
+
+            <div class="month-title">Desember 2025</div>
+            <div class="calendar-grid">
+                <div class="day-name">Senin</div>
+                <div class="day-name">Selasa</div>
+                <div class="day-name">Rabu</div>
+                <div class="day-name">Kamis</div>
+                <div class="day-name">Jumat</div>
+                <div class="day-name">Sabtu</div>
+                <div class="day-name">Minggu</div>
+
+                <div class="tgl-label disabled">1</div>
+                <div class="tgl-label disabled">2</div>
+                <div class="tgl-label disabled">3</div>
+                <div class="tgl-label disabled">4</div>
+                <div class="tgl-label disabled">5</div>
+                <div class="tgl-label disabled">6</div>
+                <div class="tgl-label disabled">7</div>
+                <div class="tgl-label disabled">8</div>
+                <div class="tgl-label disabled">9</div>
+                <div class="tgl-label disabled">10</div>
+                <div class="tgl-label disabled">11</div>
+                <div class="tgl-label disabled">12</div>
+                <div class="tgl-label disabled">13</div>
+                <div class="tgl-label disabled">14</div>
+                <div class="tgl-label disabled">15</div>
+                <div class="tgl-label disabled">16</div>
+                <div class="tgl-label disabled">17</div>
+
+                <input type="radio" name="tgl" id="d18" checked><label for="d18" class="tgl-label">18</label>
+                <input type="radio" name="tgl" id="d19"><label for="d19" class="tgl-label">19</label>
+                <input type="radio" name="tgl" id="d20"><label for="d20" class="tgl-label">20</label>
+                <input type="radio" name="tgl" id="d21"><label for="d21" class="tgl-label">21</label>
+                <input type="radio" name="tgl" id="d22"><label for="d22" class="tgl-label">22</label>
+                <input type="radio" name="tgl" id="d23"><label for="d23" class="tgl-label">23</label>
+                <input type="radio" name="tgl" id="d24"><label for="d24" class="tgl-label">24</label>
+                <input type="radio" name="tgl" id="d25"><label for="d25" class="tgl-label">25</label>
+                <input type="radio" name="tgl" id="d26"><label for="d26" class="tgl-label">26</label>
+                <input type="radio" name="tgl" id="d27"><label for="d27" class="tgl-label">27</label>
+                <input type="radio" name="tgl" id="d28"><label for="d28" class="tgl-label">28</label>
+                <input type="radio" name="tgl" id="d29"><label for="d29" class="tgl-label">29</label>
+                <input type="radio" name="tgl" id="d30"><label for="d30" class="tgl-label">30</label>
+                <input type="radio" name="tgl" id="d31"><label for="d31" class="tgl-label">31</label>
+            </div>
+
+            <div class="month-title">Januari 2026</div>
+            <div class="calendar-grid">
+                <div class="day-name">Senin</div>
+                <div class="day-name">Selasa</div>
+                <div class="day-name">Rabu</div>
+                <div class="day-name">Kamis</div>
+                <div class="day-name">Jumat</div>
+                <div class="day-name">Sabtu</div>
+                <div class="day-name">Minggu</div>
+
+                <div></div>
+                <div></div>
+                <div></div>
+
+                <input type="radio" name="tgl" id="j1"><label for="j1" class="tgl-label">1</label>
+                <input type="radio" name="tgl" id="j2"><label for="j2" class="tgl-label">2</label>
+                <input type="radio" name="tgl" id="j3"><label for="j3" class="tgl-label">3</label>
+                <input type="radio" name="tgl" id="j4"><label for="j4" class="tgl-label">4</label>
+                <input type="radio" name="tgl" id="j5"><label for="j5" class="tgl-label">5</label>
+                <input type="radio" name="tgl" id="j6"><label for="j6" class="tgl-label">6</label>
+                <input type="radio" name="tgl" id="j7"><label for="j7" class="tgl-label">7</label>
+                <input type="radio" name="tgl" id="j8"><label for="j8" class="tgl-label">8</label>
+                <input type="radio" name="tgl" id="j9"><label for="j9" class="tgl-label">9</label>
+                <input type="radio" name="tgl" id="j10"><label for="j10" class="tgl-label">10</label>
+                <input type="radio" name="tgl" id="j11"><label for="j11" class="tgl-label">11</label>
+                <input type="radio" name="tgl" id="j12"><label for="j12" class="tgl-label">12</label>
+                <input type="radio" name="tgl" id="j13"><label for="j13" class="tgl-label">13</label>
+                <input type="radio" name="tgl" id="j14"><label for="j14" class="tgl-label">14</label>
+                <input type="radio" name="tgl" id="j15"><label for="j15" class="tgl-label">15</label>
+                <input type="radio" name="tgl" id="j16"><label for="j16" class="tgl-label">16</label>
+                <input type="radio" name="tgl" id="j17"><label for="j17" class="tgl-label">17</label>
+                <input type="radio" name="tgl" id="j18"><label for="j18" class="tgl-label">18</label>
+                <input type="radio" name="tgl" id="j19"><label for="j19" class="tgl-label">19</label>
+                <input type="radio" name="tgl" id="j20"><label for="j20" class="tgl-label">20</label>
+                <input type="radio" name="tgl" id="j21"><label for="j21" class="tgl-label">21</label>
+                <input type="radio" name="tgl" id="j22"><label for="j22" class="tgl-label">22</label>
+                <input type="radio" name="tgl" id="j23"><label for="j23" class="tgl-label">23</label>
+                <input type="radio" name="tgl" id="j24"><label for="j24" class="tgl-label">24</label>
+                <input type="radio" name="tgl" id="j25"><label for="j25" class="tgl-label">25</label>
+                <input type="radio" name="tgl" id="j26"><label for="j26" class="tgl-label">26</label>
+                <input type="radio" name="tgl" id="j27"><label for="j27" class="tgl-label">27</label>
+                <input type="radio" name="tgl" id="j28"><label for="j28" class="tgl-label">28</label>
+                <input type="radio" name="tgl" id="j29"><label for="j29" class="tgl-label">29</label>
+                <input type="radio" name="tgl" id="j30"><label for="j30" class="tgl-label">30</label>
+                <input type="radio" name="tgl" id="j31"><label for="j31" class="tgl-label">31</label>
+
+            </div>
+
+            <a href="antarkota5.html" class="btn-purple">SIMPAN</a>
+        </main>
+    </div>
+
+</body>
+
+</html>

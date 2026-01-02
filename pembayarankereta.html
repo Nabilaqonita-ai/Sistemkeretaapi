@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #FFCC00, #FFD700, #FFEB99);
+            min-height: 100vh;
+        }
+        
+        .pembayaran-page {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        /* HEADER */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .page-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: "Times New Roman", serif;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-family: "Times New Roman", serif;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        /* CARD */
+        
+        .payment-card {
+            background: #fff;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+            margin-bottom: 30px;
+        }
+        
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: "Times New Roman", serif;
+        }
+        
+        .train-name,
+        .seat,
+        .total-amount {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .ticket {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: #E0E0E0;
+            margin: 25px 0;
+        }
+        
+        .total-label {
+            font-size: 26px;
+        }
+        /* PAYMENT OPTION */
+        
+        .methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .option {
+            border: 2px solid #E0E0E0;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .option.selected {
+            border-color: #00C853;
+            background: #F0FFF4;
+        }
+        
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .left img {
+            width: 45px;
+        }
+        
+        .name {
+            font-family: "Times New Roman", serif;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .admin {
+            font-size: 16px;
+            color: #666;
+        }
+        /* BUTTON */
+        
+        .btn-bayar {
+            margin: auto;
+            width: 100%;
+            max-width: 650px;
+            padding: 25px;
+            font-size: 36px;
+            font-family: "Times New Roman", serif;
+            font-weight: bold;
+            background: #E70011;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+        
+        @media(max-width:768px) {
+            .page-title {
+                font-size: 28px
+            }
+            .subtitle {
+                font-size: 26px
+            }
+            .train-name,
+            .seat,
+            .total-amount {
+                font-size: 22px
+            }
+            .ticket {
+                font-size: 18px
+            }
+            .btn-bayar {
+                font-size: 28px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pembayaran-page">
+
+        <div class="header">
+            <button class="back-btn" onclick="history.back()">
+            <img src="images/iconpanah.png" width="30">
+        </button>
+            <div class="page-title">PEMBAYARAN</div>
+        </div>
+
+        <div class="subtitle">Rincian Harga</div>
+
+        <div class="payment-card">
+
+            <div class="row">
+                <div class="train-name">MATARMAJA (KRT02)</div>
+                <div class="seat">4A</div>
+            </div>
+
+            <div class="row ticket">
+                <div>Dewasa</div>
+                <div>x1</div>
+                <div>Rp63.000</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="row">
+                <div class="total-label">Total Pembayaran</div>
+                <div class="total-amount">Rp63.000</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="methods">
+
+                <div class="option selected">
+                    <div class="left">
+                        <img src="images/bank.png">
+                        <div>
+                            <div class="name">Transfer Bank</div>
+                            <div class="admin">Biaya Admin: 3.000</div>
+                        </div>
+                    </div>
+                    <div>Kode: 18756</div>
+                </div>
+
+                <div class="option">
+                    <div class="left">
+                        <img src="images/dompet.png">
+                        <div>
+                            <div class="name">Dompet</div>
+                            <div class="admin">Top up</div>
+                        </div>
+                    </div>
+                    <div>5.000</div>
+                </div>
+
+            </div>
+        </div>
+
+        <button class="btn-bayar" onclick="window.location.href='transferbank.html'">
+            BAYAR
+        </button>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan QR Barcode - Tuttut</title>
+    <link rel="stylesheet" href="style-qr.css">
+</head>
+
+<body>
+
+    <header class="qr-header">
+        <div class="header-container">
+            <a href="akun.html" class="back-link">
+                <img src="images/iconpanah.png" alt="Kembali" class="icon-panah">
+            </a>
+            <h1 class="title-text">QR Barcode</h1>
+        </div>
+    </header>
+
+    <main class="scanner-main">
+        <div class="camera-container">
+            <video id="preview" autoplay playsinline></video>
+
+            <div class="scan-overlay">
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+                <div class="scan-line"></div>
+            </div>
+
+            <div class="label-live">LIVE CAMERA</div>
+        </div>
+
+        <div class="instruction-box">
+            <h2>Arahkan Kode QR Anda</h2>
+            <p>Posisikan barcode di dalam kotak scanner untuk verifikasi tiket otomatis.</p>
+        </div>
+    </main>
+
+    <footer class="qr-footer">
+        <p>Hubungi Kami: (021) 1234-5678 | Kantor Resmi Kereta Api Tuttut</p>
+    </footer>
+
+    <script>
+        const video = document.getElementById('preview');
+
+        // Meminta izin akses kamera
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: "environment"
+                    }
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error("Gagal mengakses kamera: ", err);
+                alert("Mohon izinkan akses kamera untuk melakukan scan.");
+            }
+        }
+
+        // Jalankan kamera saat halaman dimuat
+        window.addEventListener('load', startCamera);
+    </script>
+</body>
+
+</html>

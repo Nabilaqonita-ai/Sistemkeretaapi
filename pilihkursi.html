@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilih Kursi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        /* Latar belakang gradasi Kuning ke Putih */
+        
+        body {
+            background: linear-gradient(to bottom, #FFCC00 0%, #FFFFFF 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pilih-kursi-page {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        /* Header */
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        /* Kolom Putih (Seat Container) sesuai ukuran awal Anda */
+        
+        .seat-container {
+            background: #FFFFFF;
+            background-image: url('images/kolomputih.png');
+            background-size: 100% 100%;
+            padding: 60px;
+            margin-bottom: 40px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .seat-grid {
+            display: grid;
+            grid-template-columns: 80px 100px 100px 120px 100px 100px;
+            gap: 30px 0;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .label {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        
+        .seat {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            border-radius: 4px;
+            background-color: #D9D9D9;
+        }
+        
+        .seat.selected {
+            background-color: #9747FF;
+        }
+        
+        .seat.empty {
+            background: transparent;
+        }
+        /* Navigasi Gerbong */
+        
+        .class-selection {
+            display: flex;
+            justify-content: center;
+            gap: 150px;
+            margin-bottom: 60px;
+        }
+        
+        .class-btn {
+            padding: 15px 60px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid #000;
+        }
+        
+        .class-btn.active {
+            background: #9747FF;
+            color: white;
+            border: none;
+        }
+        
+        .class-btn.inactive {
+            background: white;
+            color: black;
+        }
+        /* Tombol Pembayaran */
+        
+        .btn-pembayaran {
+            width: 100%;
+            max-width: 800px;
+            background-color: #E70011;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pilih-kursi-page">
+        <header class="header">
+            <button class="back-btn" onclick="history.back()">
+                <img src="images/iconpanah.png" alt="Back" width="30">
+            </button>
+            <h1 class="page-title">PILIH KURSI</h1>
+        </header>
+
+        <div class="seat-container">
+            <div class="seat-grid">
+                <div class="label"></div>
+                <div class="label">A</div>
+                <div class="label">B</div>
+                <div></div>
+                <div class="label">C</div>
+                <div class="label">D</div>
+
+                <div class="label">1</div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div></div>
+                <div class="seat empty"></div>
+                <div class="seat empty"></div>
+
+                <div class="label">2</div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div></div>
+                <div class="seat empty"></div>
+                <div class="seat empty"></div>
+
+                <div class="label">3</div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+
+                <div class="label">4</div>
+                <div class="seat selected"></div>
+                <div class="seat"></div>
+                <div></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+        </div>
+
+        <div class="class-selection">
+            <button class="class-btn active">Ekonomi 1</button>
+        </div>
+
+        <div class="footer-action">
+            <button class="btn-pembayaran" onclick="window.location.href='pembayarankereta.html'">
+                PEMBAYARAN
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

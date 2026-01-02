@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailFood - Kereta API</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+        /* ===== CONTAINER FULL DESKTOP ===== */
+        
+        .main-container {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            background: #fff;
+        }
+        /* ===== BACKGROUND ===== */
+        
+        .ellipse {
+            position: absolute;
+            width: 1800px;
+            height: 900px;
+            top: -350px;
+            left: -200px;
+            background: linear-gradient(135deg, #FFCC00, #FF9966);
+            filter: blur(2px);
+            z-index: 1;
+        }
+        
+        .ellipse-9 {
+            position: absolute;
+            width: 1800px;
+            height: 1000px;
+            bottom: -400px;
+            left: -200px;
+            background: linear-gradient(135deg, #FFCC00, #FF9966);
+            filter: blur(2px);
+            z-index: 1;
+        }
+        /* ===== HEADER ===== */
+        
+        .header {
+            position: relative;
+            z-index: 5;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .rail-food {
+            font-size: 56px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 80px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 32px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+        /* ===== YELLOW BAR ===== */
+        
+        .yellow-bar {
+            width: 100%;
+            height: 25px;
+            background: #FFCC00;
+            box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+            position: relative;
+        }
+        /* ===== CONTENT ===== */
+        
+        .content {
+            position: relative;
+            z-index: 5;
+            width: calc(100% - 80px);
+            margin: 60px auto;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 80px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+        /* ===== FOOD ITEM ===== */
+        
+        .food-item {
+            width: calc(100% - 120px);
+            height: 220px;
+            margin: 0 auto 60px auto;
+            background: #E70011;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .food-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(231, 0, 17, 0.35);
+        }
+        
+        .food-img {
+            width: 400px;
+            height: 170px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .food-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .food-name {
+            margin-left: 80px;
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            flex: 1;
+        }
+        
+        .food-price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+        }
+        /* ===== DESKTOP ONLY ===== */
+        
+        @media (max-width: 1024px) {
+            body::before {
+                content: "DESAIN INI KHUSUS DESKTOP";
+                position: fixed;
+                inset: 0;
+                background: #000;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                z-index: 9999;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="ellipse"></div>
+        <div class="ellipse-9"></div>
+
+        <!-- HEADER -->
+        <div class="header">
+            <a href="tiketsaya.html" class="back-btn">←</a>
+            <span class="rail-food">RailFood</span>
+        </div>
+
+        <div class="yellow-bar"></div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <div class="food-item">
+                <div class="food-img">
+                    <img src="images/kentangminuman.png" alt="">
+                </div>
+                <div class="food-name">French Fries & Drink</div>
+                <div class="food-price">35.000</div>
+            </div>
+
+            <div class="food-item">
+                <div class="food-img">
+                    <img src="images/burger.png" alt="">
+                </div>
+                <div class="food-name">Burger</div>
+                <div class="food-price">30.000</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

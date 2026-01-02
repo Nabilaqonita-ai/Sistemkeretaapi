@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Bantuan</title>
+
+    <style>
+         :root {
+            --yellow: #FFCC00;
+            --bg: #fdf8e9;
+            --text: #333;
+        }
+        
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: var(--bg);
+        }
+        /* HEADER */
+        
+        .header {
+            background: var(--yellow);
+            padding: 30px 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header a img {
+            width: 32px;
+        }
+        
+        .header h1 {
+            flex: 1;
+            text-align: center;
+            font-size: 42px;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        
+        .header .spacer {
+            width: 32px;
+        }
+        /* CONTENT FULL WIDTH */
+        
+        .container {
+            width: 100%;
+            padding: 50px 80px;
+        }
+        
+        .faq-item {
+            background: #fff;
+            border-radius: 22px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 40px;
+            cursor: pointer;
+        }
+        
+        .faq-question h3 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--text);
+        }
+        
+        .faq-question img {
+            width: 26px;
+            transition: transform .3s ease;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 0 40px 30px 40px;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-item.active .faq-question img {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <a href="akun.html">
+            <img src="images/iconpanah.png" alt="Kembali">
+        </a>
+
+        <h1>PUSAT BANTUAN</h1>
+
+        <div class="spacer"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container">
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Bagaimana cara memesan tiket kereta api?</h3>
+                <img src="images/iconpanah.png">
+            </div>
+            <div class="faq-answer">
+                Tiket kereta api dapat dipesan melalui aplikasi atau website resmi. Penumpang memilih rute, tanggal keberangkatan, mengisi data, lalu melakukan pembayaran sesuai metode yang tersedia.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Apakah tiket bisa dibatalkan atau diubah jadwal?</h3>
+                <img src="images/iconpanah.png">
+            </div>
+            <div class="faq-answer">
+                Tiket dapat dibatalkan atau diubah jadwal sebelum keberangkatan dengan mengikuti syarat dan ketentuan serta biaya administrasi.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Berapa batas maksimal bagasi penumpang?</h3>
+                <img src="images/iconpanah.png">
+            </div>
+            <div class="faq-answer">
+                Setiap penumpang diperbolehkan membawa bagasi maksimal 20 kg tanpa biaya tambahan, sesuai ketentuan keselamatan.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Apakah anak-anak wajib membeli tiket?</h3>
+                <img src="images/iconpanah.png">
+            </div>
+            <div class="faq-answer">
+                Anak usia di atas 3 tahun atau yang menempati kursi sendiri wajib memiliki tiket. Anak di bawah usia tersebut tidak wajib membeli tiket selama tidak mengambil tempat duduk.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Apa yang harus dilakukan jika tertinggal kereta?</h3>
+                <img src="images/iconpanah.png">
+            </div>
+            <div class="faq-answer">
+                Penumpang yang tertinggal kereta dapat segera melapor ke petugas stasiun atau layanan pelanggan untuk mendapatkan arahan lanjutan.
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                item.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
